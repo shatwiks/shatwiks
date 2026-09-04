@@ -1,7 +1,57 @@
-Markdown# Shatwik Sarthak
+# Shatwik Sarthak
 
 **Full-Stack & Applied AI Engineer**  
-Bengaluru, India • [LinkedIn](https://www.linkedin.com/in/shatwik-sarthak-b6121b2a6/) • [Portfolio](https://shatwik.dev) • [Email](shatwik7@gmail.com)
+Bengaluru, India • [LinkedIn](https://www.linkedin.com/in/shatwik-sarthak-b6121b2a6/) • [Portfolio](https://shatwik.dev) • [Email](mailto:contact@shatwik.dev)
 
-```text
-Technical CapabilitiesDomainStack & InfrastructureLanguagesPython (Asyncio, Pydantic), TypeScript, JavaScript (ES6+), C++, SQLBackend & Distributed SystemsNode.js, Express, FastAPI, Redis (Pub/Sub, Semantic Caching), WebSockets, SSE, REST APIsFrontend ArchitectureReact, Next.js (App Router, Server Actions), TanStack Query, Zustand, Tailwind CSSAI & Machine LearningPyTorch, Hugging Face, LangGraph, vLLM, Dense Vector Embeddings, Cohere RerankDatabases & Vector StoresPostgreSQL, MongoDB Atlas Vector Search, Pinecone, RedisCloud & DevOpsDocker (Multi-stage builds), AWS (EC2, S3), GitHub Actions (CI/CD), Linux/POSIX, NGINXFeatured Systems & Production Repositories1. CogniSync: Enterprise Hybrid-Search RAG PlatformDistributed hybrid-search document retrieval engine combining sparse lexical matching with dense vector indexing.Architecture: Decoupled Next.js 15 streaming interface, Node.js API Gateway, containerized Python FastAPI inference microservice, and MongoDB Atlas Vector Search.Impact & Metrics: Boosted context retrieval precision from 58% to 94% using Cohere Cross-Encoder re-ranking; maintained sub-380ms Time-to-First-Token (TTFT) via Server-Sent Events (SSE).Reliability: Integrated automated regression benchmarking into GitHub Actions via Ragas and DeepEval; cut upstream LLM API expenditure by 36% through Redis semantic caching.TypeScript Python FastAPI Next.js MongoDB Atlas Redis Docker2. Synapse: Real-Time Collaborative Canvas & Agent HubMultiplayer collaborative workspace with state-synchronized canvas operations and streaming multimodal AI assistance.Architecture: React Canvas, Node.js WebSocket gateway, Redis Pub/Sub, CRDTs (Conflict-Free Replicated Data Types via Yjs), Gemini Multimodal API.Impact & Metrics: Sustained sub-40ms peer-to-peer sync latency across 50+ concurrent users per room with zero state divergence or split-brain data conflicts.React Node.js WebSockets Yjs PostgreSQL Redis Docker3. OmniServe: High-Throughput Quantized LLM Inference GatewayReverse-proxy inference gateway featuring dynamic batching, sliding-window rate limiting, and prompt injection mitigation.Architecture: Python FastAPI, vLLM runtime with PagedAttention, INT4/INT8 quantization, and Redis distributed token-bucket rate limiter.Impact & Metrics: Benchmarked at 2,400 req/sec; cut GPU memory consumption by 65% with zero loss in output quality.Python vLLM PyTorch Redis FastAPI Prometheus AWS ECSEngineering PrinciplesSystems Over Wrappers: Building resilient background task queues, distributed caches, and streaming protocols rather than relying on synchronous, brittle API calls.Deterministic AI: Guarding non-deterministic LLM behavior through strict schema validation (Pydantic/Zod), context-precision scoring, and automated CI/CD hallucination tests.Clean Code & Git Hygiene: Writing conventional, semantic commits (feat:, fix:, refactor:), maintaining comprehensive READMEs with architecture diagrams, and deploying reproducible Docker configurations.What I'm Focused OnSolving advanced algorithmic problems across Graphs, Dynamic Programming, and Low-Level Design.Contributing to open-source agentic frameworks and low-latency local model inference engines.Preparing for entry-level Software Development Engineer (SDE) and Full-Stack AI/ML roles.
+> Focus: Scalable distributed web architectures (Node.js, TypeScript, PostgreSQL) coupled with production AI/ML systems (Advanced RAG, Model Serving, Agent Workflows).
+
+---
+
+### Technical Capabilities
+
+| Domain | Stack & Infrastructure |
+| :--- | :--- |
+| **Languages** | Python (Asyncio, Pydantic), TypeScript, JavaScript (ES6+), C++, SQL |
+| **Backend & Distributed Systems** | Node.js, Express, FastAPI, Redis (Pub/Sub, Semantic Caching), WebSockets, SSE, REST APIs |
+| **Frontend Architecture** | React, Next.js (App Router, Server Actions), TanStack Query, Zustand, Tailwind CSS |
+| **AI & Machine Learning** | PyTorch, Hugging Face, LangGraph, vLLM, Dense Vector Embeddings, Cohere Rerank |
+| **Databases & Vector Stores** | PostgreSQL, MongoDB Atlas Vector Search, Pinecone, Redis |
+| **Cloud & DevOps** | Docker (Multi-stage builds), AWS (EC2, S3), GitHub Actions (CI/CD), Linux/POSIX, NGINX |
+
+---
+
+### Featured Systems & Production Repositories
+
+#### 1. [CogniSync: Enterprise Hybrid-Search RAG Platform](https://github.com/shatwiks)
+*Distributed hybrid-search document retrieval engine combining sparse lexical matching with dense vector indexing.*
+* **Architecture:** Decoupled Next.js 15 streaming interface, Node.js API Gateway, containerized Python FastAPI inference microservice, and MongoDB Atlas Vector Search.
+* **Impact & Metrics:** Boosted context retrieval precision from 58% to 94% using Cohere Cross-Encoder re-ranking; maintained sub-380ms Time-to-First-Token (TTFT) via Server-Sent Events (SSE).
+* **Reliability:** Integrated automated regression benchmarking into GitHub Actions via Ragas and DeepEval; cut upstream LLM API expenditure by 36% through Redis semantic caching.
+* `TypeScript` `Python` `FastAPI` `Next.js` `MongoDB Atlas` `Redis` `Docker`
+
+#### 2. [Synapse: Real-Time Collaborative Canvas & Agent Hub](https://github.com/shatwiks)
+*Multiplayer collaborative workspace with state-synchronized canvas operations and streaming multimodal AI assistance.*
+* **Architecture:** React Canvas, Node.js WebSocket gateway, Redis Pub/Sub, CRDTs (Conflict-Free Replicated Data Types via Yjs), Gemini Multimodal API.
+* **Impact & Metrics:** Sustained sub-40ms peer-to-peer sync latency across 50+ concurrent users per room with zero state divergence or split-brain data conflicts.
+* `React` `Node.js` `WebSockets` `Yjs` `PostgreSQL` `Redis` `Docker`
+
+#### 3. [OmniServe: High-Throughput Quantized LLM Inference Gateway](https://github.com/shatwiks)
+*Reverse-proxy inference gateway featuring dynamic batching, sliding-window rate limiting, and prompt injection mitigation.*
+* **Architecture:** Python FastAPI, vLLM runtime with PagedAttention, INT4/INT8 quantization, and Redis distributed token-bucket rate limiter.
+* **Impact & Metrics:** Benchmarked at 2,400 req/sec; cut GPU memory consumption by 65% with zero loss in output quality.
+* `Python` `vLLM` `PyTorch` `Redis` `FastAPI` `Prometheus` `AWS ECS`
+
+---
+
+### Engineering Principles
+
+* **Systems Over Wrappers:** Building resilient background task queues, distributed caches, and streaming protocols rather than relying on synchronous, brittle API calls.
+* **Deterministic AI:** Guarding non-deterministic LLM behavior through strict schema validation (Pydantic/Zod), context-precision scoring, and automated CI/CD hallucination tests.
+* **Clean Code & Git Hygiene:** Writing conventional, semantic commits (`feat:`, `fix:`, `refactor:`), maintaining comprehensive READMEs with architecture diagrams, and deploying reproducible Docker configurations.
+
+---
+
+### What I'm Focused On
+* Solving advanced algorithmic problems across Graphs, Dynamic Programming, and Low-Level Design.
+* Contributing to open-source agentic frameworks and low-latency local model inference engines.
+* Preparing for entry-level Software Development Engineer (SDE) and Full-Stack AI/ML roles.
