@@ -44,33 +44,14 @@ B.Tech student in Computer Science and Engineering at **Manipal Institute of Tec
 * **Status:** Benchmarks are being collected; results will be published in the repo README.
 * `C++20` `ClickHouse` `Python` `TypeScript` `WebSockets`
 
-#### 3. [CogniSync: Enterprise Hybrid-Search RAG Platform](https://github.com/shatwiks)
-*Distributed hybrid-search document retrieval engine combining sparse lexical matching with dense vector indexing.*
-* **Architecture:** Decoupled Next.js 15 streaming interface, Node.js API Gateway, containerized Python FastAPI inference microservice, and MongoDB Atlas Vector Search.
-* **Impact & Metrics:** Boosted context retrieval precision from 58% to 94% using Cohere Cross-Encoder re-ranking; maintained sub-380ms Time-to-First-Token (TTFT) via Server-Sent Events (SSE).
-* **Reliability:** Integrated automated regression benchmarking into GitHub Actions via Ragas and DeepEval; cut upstream LLM API expenditure by 36% through Redis semantic caching.
-* `TypeScript` `Python` `FastAPI` `Next.js` `MongoDB Atlas` `Redis` `Docker`
-
-#### 4. [Synapse: Real-Time Collaborative Canvas & Agent Hub](https://github.com/shatwiks)
-*Multiplayer collaborative workspace with state-synchronized canvas operations and streaming multimodal AI assistance.*
-* **Architecture:** React Canvas, Node.js WebSocket gateway, Redis Pub/Sub, CRDTs (Conflict-Free Replicated Data Types via Yjs), Gemini Multimodal API.
-* **Impact & Metrics:** Sustained sub-40ms peer-to-peer sync latency across 50+ concurrent users per room with zero state divergence or split-brain data conflicts.
-* `React` `Node.js` `WebSockets` `Yjs` `PostgreSQL` `Redis` `Docker`
-
-#### 5. [OmniServe: High-Throughput Quantized LLM Inference Gateway](https://github.com/shatwiks)
-*Reverse-proxy inference gateway featuring dynamic batching, sliding-window rate limiting, and prompt injection mitigation.*
-* **Architecture:** Python FastAPI, vLLM runtime with PagedAttention, INT4/INT8 quantization, and Redis distributed token-bucket rate limiter.
-* **Impact & Metrics:** Benchmarked at 2,400 req/sec; cut GPU memory consumption by 65% with zero loss in output quality.
-* `Python` `vLLM` `PyTorch` `Redis` `FastAPI` `Prometheus` `AWS ECS`
-
-#### 6. [Real-Time Commerce and Delivery Platform](https://github.com/shatwiks/Real-Time-Commerce-and-Web-Application-Platform) • [Live Demo](https://food-full-stack-kappa.vercel.app/)
+#### 3. [Real-Time Commerce and Delivery Platform](https://github.com/shatwiks/Real-Time-Commerce-and-Web-Application-Platform) • [Live Demo](https://food-full-stack-kappa.vercel.app/)
 *Food ordering and live delivery platform with a responsive React/TypeScript storefront.*
 * **Architecture:** Event-driven pub/sub over Socket.io namespaces with room isolation; Express middleware; cloud PostgreSQL (Neon) via Prisma, deployed across Vercel and Render.
 * **Impact & Metrics:** Order-lifecycle sync under **50 ms** across **1,500+** simulated sessions; **p95 catalog query latency cut by 64%** with compound indexes and connection pooling.
 * **Security:** Email 2FA/OTP, signed HTTP-only JWT sessions and parameterized middleware eliminated authorization tampering in testing.
 * `React` `TypeScript` `Node.js` `PostgreSQL` `Socket.io` `Prisma`
 
-#### 7. [PayGuard AI: Agentic Payment Triage and RAG Engine](https://github.com/shatwiks/PayGuard-AI-Agentic-Payment-Triage-RAG-Engine)
+#### 4. [PayGuard AI: Agentic Payment Triage and RAG Engine](https://github.com/shatwiks/PayGuard-AI-Agentic-Payment-Triage-RAG-Engine)
 *AI-powered triage and analytics assistant for payment operations, with Agile sprint reporting and KPI tracking.*
 * **Architecture:** Agentic RAG engine orchestrating LLMs with few-shot and structured JSON prompts, context management and Text-to-SQL over PostgreSQL and MongoDB.
 * **Impact & Metrics:** Cut payment-triage time by **65%** at **92% query accuracy**.
