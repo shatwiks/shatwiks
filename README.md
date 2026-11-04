@@ -101,41 +101,7 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 
-### 3. [CogniSync: Enterprise Hybrid-Search RAG Platform](https://github.com/shatwiks)
-*Distributed hybrid-search retrieval engine combining sparse lexical matching with dense vector indexing.*
-
-- **Architecture:** Next.js 15 streaming interface, Node.js API gateway, containerized FastAPI inference microservice, MongoDB Atlas Vector Search
-- **Impact:** context retrieval precision from 58% to 94% with Cohere cross-encoder re-ranking; sub-380ms time-to-first-token via SSE
-- **Reliability:** Ragas and DeepEval regression benchmarks in GitHub Actions; 36% lower LLM API spend through Redis semantic caching
-
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB_Atlas-47A248?style=flat-square&logo=mongodb&logoColor=white)
-![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
-
-### 4. [Synapse: Real-Time Collaborative Canvas & Agent Hub](https://github.com/shatwiks)
-*Multiplayer workspace with state-synchronized canvas operations and streaming multimodal AI assistance.*
-
-- **Architecture:** React canvas, Node.js WebSocket gateway, Redis Pub/Sub, CRDTs via Yjs, Gemini multimodal API
-- **Impact:** sub-40ms sync latency across 50+ concurrent users per room with zero state divergence
-
-![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![WebSockets](https://img.shields.io/badge/WebSockets-010101?style=flat-square)
-![Yjs](https://img.shields.io/badge/Yjs-7C3AED?style=flat-square)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-
-### 5. [OmniServe: High-Throughput Quantized LLM Inference Gateway](https://github.com/shatwiks)
-*Reverse-proxy inference gateway with dynamic batching, sliding-window rate limiting and prompt-injection mitigation.*
-
-- **Architecture:** FastAPI, vLLM with PagedAttention, INT4/INT8 quantization, Redis token-bucket rate limiter
-- **Impact:** benchmarked at 2,400 req/sec; 65% lower GPU memory with zero loss in output quality
-
-![vLLM](https://img.shields.io/badge/vLLM-7C3AED?style=flat-square)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
-![Prometheus](https://img.shields.io/badge/Prometheus-E6522C?style=flat-square&logo=prometheus&logoColor=white)
-![AWS ECS](https://img.shields.io/badge/AWS_ECS-FF9900?style=flat-square&logo=amazonecs&logoColor=white)
-
-### 6. [Real-Time Commerce and Delivery Platform](https://github.com/shatwiks/Real-Time-Commerce-and-Web-Application-Platform) • [Live Demo](https://food-full-stack-kappa.vercel.app/)
+### 3. [Real-Time Commerce and Delivery Platform](https://github.com/shatwiks/Real-Time-Commerce-and-Web-Application-Platform) • [Live Demo](https://food-full-stack-kappa.vercel.app/)
 *Food ordering and live delivery platform with a responsive React/TypeScript storefront.*
 
 - **Architecture:** event-driven Socket.io (namespaces, room isolation), Express middleware, Neon PostgreSQL via Prisma, deployed on Vercel and Render
@@ -146,7 +112,7 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 ![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=flat-square&logo=socketdotio&logoColor=white)
 ![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white)
 
-### 7. [PayGuard AI: Agentic Payment Triage and RAG Engine](https://github.com/shatwiks/PayGuard-AI-Agentic-Payment-Triage-RAG-Engine)
+### 4. [PayGuard AI: Agentic Payment Triage and RAG Engine](https://github.com/shatwiks/PayGuard-AI-Agentic-Payment-Triage-RAG-Engine)
 *AI assistant for payment operations with Agile sprint reporting and KPI tracking.*
 
 - **Architecture:** agentic RAG engine orchestrating LLMs with few-shot and structured JSON prompts and Text-to-SQL over PostgreSQL and MongoDB
