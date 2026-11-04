@@ -146,12 +146,8 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 
 <div align="center">
 
-<img height="180" src="https://github-readme-stats.vercel.app/api?username=shatwiks&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0D1117" alt="GitHub stats" />
-<img height="180" src="https://github-readme-stats.vercel.app/api/top-langs/?username=shatwiks&layout=compact&theme=tokyonight&hide_border=true&bg_color=0D1117" alt="Top languages" />
-
-<img src="https://streak-stats.demolab.com?user=shatwiks&theme=tokyonight&hide_border=true&background=0D1117" alt="GitHub streak" />
-
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=shatwiks&theme=tokyo-night&hide_border=true&bg_color=0D1117&area=true" alt="Contribution graph" width="100%" />
+<img height="180" src="./profile/stats.svg" alt="GitHub stats" />
+<img height="180" src="./profile/top-langs.svg" alt="Top languages" />
 
 </div>
 
