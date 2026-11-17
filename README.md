@@ -72,6 +72,34 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 
 ---
 
+## 📊 Top Skills (measured from my repos)
+
+*Measured by non-blank lines of code and how many repos use each tool, across 10 public repositories (148k+ lines).*
+
+**Languages**
+
+```text
+TypeScript  ███████████████████░░░░░░░░░░░░░░░░░░░░░  47.8%  · 71.2k lines · 8 repos
+Python      ██████████████░░░░░░░░░░░░░░░░░░░░░░░░░░  35.3%  · 52.5k lines · 4 repos
+JavaScript  █████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  12.5%  · 18.6k lines · 5 repos
+CSS         █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   2.6%  ·  3.8k lines · 9 repos
+C++20       █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0.9%  ·  1.3k lines · orderbook engine
+SQL         █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0.9%  ·  1.3k lines · 8 repos
+```
+
+**Most-used frameworks & infrastructure** *(number of repos)*
+
+| Frontend | Backend | Data & Infra |
+| :--- | :--- | :--- |
+| ⚛️ React · **8** | ⚡ FastAPI · **4** | 🐘 PostgreSQL · **7** |
+| 🎨 Tailwind CSS · **6** | 🚂 Express · **4** | 🐳 Docker · **7** |
+| ▲ Next.js · **5** | 🛡️ Zod · **4** | ⚙️ GitHub Actions CI · **5** *(+ profile)* |
+| ⚡ Vite · **4** | 🧱 SQLAlchemy + Pydantic · **3** | 🟥 Redis · **3** |
+| 🧊 Three.js · **2** | 🔷 Prisma ORM · **3** | 🪶 SQLite · **2** |
+| 🐻 Zustand · **2** | 🧪 pytest / Vitest · **2 each** | 🧭 pgvector · DuckDB · Terraform · **1 each** |
+
+---
+
 ## 🚀 Featured Projects
 
 ### 1. [StockPulse: Multi-Tenant Inventory & Order Engine](https://github.com/shatwiks/StockPulse-Multi-Tenant-Inventory-Order-Engine)
@@ -80,6 +108,18 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 - **Architecture:** Express + Prisma on PostgreSQL 16, Next.js 16 / React 19 client with TanStack Query, Dockerized with GitHub Actions CI
 - **Impact:** eliminated overselling and PostgreSQL deadlocks with deterministic row-lock ordering (`SELECT ... FOR UPDATE ORDER BY id`), verified by 10-thread parallel stress tests with **0 negative-stock drift**
 - **Security:** zero-trust tenant isolation across Admin, Manager and Cashier roles; `stock_quantity >= 0` DB constraints; WCAG 2.1 AA audited UI
+
+<details><summary>🏗️ Architecture</summary>
+
+```mermaid
+flowchart LR
+  C[Cashier POS - Next.js] -->|JWT + tenant scope| API[Express API]
+  API --> TX{{Interactive transaction}}
+  TX -->|FOR UPDATE ORDER BY id| PG[(PostgreSQL 16)]
+  PG -->|stock_quantity >= 0| OK[Order committed]
+  TX -->|shortage| E[409 Conflict + cart reconcile]
+```
+</details>
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
@@ -92,6 +132,19 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 - **Architecture:** O(1) atomic Redis Lua stock gate with Redlock distributed locking, PostgreSQL for durable orders, Dockerized services on AWS
 - **Impact:** sustained **10,000+ RPS** with **0.00% overbooking**; cut **p95 latency by 93%** (271 ms to 18.5 ms) by replacing PostgreSQL row locks (`SELECT FOR UPDATE`)
 - **Reliability:** Saga-style rollbacks (`INCRBY`) keep Redis and PostgreSQL consistent on write failures; two-tier idempotency keys block duplicate payments
+
+<details><summary>🏗️ Architecture</summary>
+
+```mermaid
+flowchart LR
+  U[Burst traffic 10k+ RPS] --> API[Express API]
+  API -->|atomic Lua script| R[(Redis 7 stock gate)]
+  R -->|reserved| PG[(PostgreSQL 16 orders)]
+  PG -.->|write fails| RB[Saga INCRBY rollback]
+  RB -.-> R
+  R -->|sold out| X[409 Conflict]
+```
+</details>
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
@@ -107,6 +160,19 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 - **Impact:** order-lifecycle sync under **50 ms** across **1,500+** simulated sessions; **p95 catalog query latency down 64%** with compound indexes and pooling
 - **Security:** email 2FA/OTP, signed HTTP-only JWT sessions, parameterized middleware
 
+<details><summary>🏗️ Architecture</summary>
+
+```mermaid
+flowchart LR
+  C[React + Zustand client] -->|REST| API[Express API]
+  C <-->|WebSocket| S[Socket.io rooms]
+  API -->|login| OTP[Step-up 2FA OTP]
+  API -->|DB-priced checkout| PG[(PostgreSQL via Prisma)]
+  API -->|status change| S
+  S -->|order:id / restaurant:id| C
+```
+</details>
+
 ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
 ![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=flat-square&logo=socketdotio&logoColor=white)
 ![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white)
@@ -118,6 +184,20 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 - **Intelligence:** Tesseract.js OCR extracts batch, expiry and manufacturer; 12-factor clinical eligibility rules engine; Haversine-weighted NGO matching
 - **Trust:** pharmacist review queue with cryptographic QR issuance and a full donation state machine from intake to delivery
 
+<details><summary>🏗️ Architecture</summary>
+
+```mermaid
+flowchart LR
+  D[Donor upload] --> OCR[Tesseract OCR]
+  OCR --> RULES{12-factor rules}
+  RULES -->|fail| REJ[Auto-reject]
+  RULES -->|pass| PH[Pharmacist review + QR]
+  PH --> M[Haversine NGO match]
+  M --> P[Pickup]
+  P --> DEL[Delivered]
+```
+</details>
+
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
 ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
@@ -128,6 +208,22 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 - **Architecture:** FastAPI agent orchestration, PostgreSQL 16 + pgvector hybrid retrieval (full-text + vectors with Reciprocal Rank Fusion), local Ollama embeddings and LLM, Next.js 16 console
 - **Impact:** **100% pass rate** on a 40-case RAG evaluation suite (Recall@5 100%, MRR 1.0) with **207 automated test cases** across 20 test files
 - **Safety:** cross-tenant IDOR isolation, prompt-injection defenses, cited answers with grounded abstention, Playwright E2E checks
+
+<details><summary>🏗️ Architecture</summary>
+
+```mermaid
+flowchart LR
+  T[Payment exception] --> ORC[Agent orchestrator - FastAPI]
+  ORC --> TRI[Triage agent]
+  ORC --> RISK[Fraud and risk agent]
+  ORC --> RAG[RAG policy agent]
+  RAG -->|full-text + vector + RRF| PG[(PostgreSQL + pgvector)]
+  RAG -->|embeddings and LLM| OL[Ollama]
+  ORC --> H{High risk?}
+  H -->|yes| HITL[Human approval]
+  H -->|no| ACT[Cited resolution]
+```
+</details>
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
@@ -158,7 +254,19 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 
 <img height="180" src="./profile/stats.svg" alt="GitHub stats" />
 <img height="180" src="./profile/top-langs.svg" alt="Top languages" />
+<br/>
+<img height="180" src="https://streak-stats.demolab.com?user=shatwiks&theme=tokyonight&hide_border=true&background=0D1117" alt="GitHub streak stats" />
 
+<br/>
+
+<img src="https://github-readme-activity-graph.vercel.app/graph?username=shatwiks&theme=tokyo-night&bg_color=0D1117&hide_border=true" width="100%" alt="GitHub activity graph" />
+
+</div>
+
+### 🧊 3D Contribution Graph
+
+<div align="center">
+  <img src="./profile-3d-contrib/profile-night-rainbow.svg" alt="3D contribution graph" />
 </div>
 
 ### 🐍 Contribution Snake
