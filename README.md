@@ -74,7 +74,19 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 
 ## 🚀 Featured Projects
 
-### 1. [Distributed Flash-Sale and Cloud Checkout Engine](https://github.com/shatwiks/distributed-flash-sale-engine) • [Live Demo](https://distributed-flash-sale-engine-bj7q.vercel.app/)
+### 1. [StockPulse: Multi-Tenant Inventory & Order Engine](https://github.com/shatwiks/StockPulse-Multi-Tenant-Inventory-Order-Engine)
+*Multi-tenant B2B inventory platform and high-concurrency POS order engine.*
+
+- **Architecture:** Express + Prisma on PostgreSQL 16, Next.js 16 / React 19 client with TanStack Query, Dockerized with GitHub Actions CI
+- **Impact:** eliminated overselling and PostgreSQL deadlocks with deterministic row-lock ordering (`SELECT ... FOR UPDATE ORDER BY id`), verified by 10-thread parallel stress tests with **0 negative-stock drift**
+- **Security:** zero-trust tenant isolation across Admin, Manager and Cashier roles; `stock_quantity >= 0` DB constraints; WCAG 2.1 AA audited UI
+
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white)
+
+### 2. [Distributed Flash-Sale and Cloud Checkout Engine](https://github.com/shatwiks/distributed-flash-sale-engine) • [Live Demo](https://distributed-flash-sale-engine-bj7q.vercel.app/)
 *A high-contention checkout engine built to sell limited stock under burst traffic without overbooking.*
 
 - **Architecture:** O(1) atomic Redis Lua stock gate with Redlock distributed locking, PostgreSQL for durable orders, Dockerized services on AWS
@@ -88,19 +100,6 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white)
 
-### 2. PolyPulse: Cross-Venue Prediction-Market Orderbook & Markout Pipeline 🚧 *(in progress)*
-*Low-latency ingestion, orderbook and wallet-markout engine for Polymarket and Kalshi.*
-
-- **Orderbook:** cache-aligned C++20 book with AVX2 intrinsics, normalizing Kalshi bid-only books (`YES Ask = 1.00 - NO Bid`)
-- **Ingestion:** async pipeline with heartbeat watchdog, sequence-gap snapshot recovery, stable-key dedup, and Polygon `OrderFilled` decoding
-- **Analytics:** ClickHouse `AggregatingMergeTree` materialized views with `ASOF LEFT JOIN` for 5s/30s/60s post-trade markouts; React terminal with Web Worker parsing
-- **Status:** benchmarks being collected, results coming to the repo README
-
-![C++20](https://img.shields.io/badge/C++20-00599C?style=flat-square&logo=cplusplus&logoColor=white)
-![ClickHouse](https://img.shields.io/badge/ClickHouse-FFCC01?style=flat-square&logo=clickhouse&logoColor=black)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-
 ### 3. [Real-Time Commerce and Delivery Platform](https://github.com/shatwiks/Real-Time-Commerce-and-Web-Application-Platform) • [Live Demo](https://food-full-stack-kappa.vercel.app/)
 *Food ordering and live delivery platform with a responsive React/TypeScript storefront.*
 
@@ -112,16 +111,27 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 ![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=flat-square&logo=socketdotio&logoColor=white)
 ![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white)
 
-### 4. [PayGuard AI: Agentic Payment Triage and RAG Engine](https://github.com/shatwiks/PayGuard-AI-Agentic-Payment-Triage-RAG-Engine)
-*AI assistant for payment operations with Agile sprint reporting and KPI tracking.*
+### 4. [MedicineLink: Verified Surplus Medicine Redistribution](https://github.com/shatwiks/Medicine-Link)
+*Closed-loop platform connecting donors, licensed pharmacists and verified NGOs to redistribute unused sealed medicines.*
 
-- **Architecture:** agentic RAG engine orchestrating LLMs with few-shot and structured JSON prompts and Text-to-SQL over PostgreSQL and MongoDB
-- **Impact:** cut payment-triage time by **65%** at **92% query accuracy**
-- **Safety:** PII token masking, read-only SQL validation and sandboxing, real-time observability
+- **Architecture:** Express + TypeScript REST API on native SQLite (WAL, 15 tables, append-only audit triggers), React 18 + Vite + Tailwind portals for 4 roles
+- **Intelligence:** Tesseract.js OCR extracts batch, expiry and manufacturer; 12-factor clinical eligibility rules engine; Haversine-weighted NGO matching
+- **Trust:** pharmacist review queue with cryptographic QR issuance and a full donation state machine from intake to delivery
+
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
+
+### 5. [PayGuard AI: Agentic Payment Triage and RAG Engine](https://github.com/shatwiks/PayGuard-AI-Agentic-Payment-Triage-RAG-Engine)
+*Multi-agent payment-dispute triage and policy-grounded RAG resolution platform.*
+
+- **Architecture:** FastAPI agent orchestration, PostgreSQL 16 + pgvector hybrid retrieval (full-text + vectors with Reciprocal Rank Fusion), local Ollama embeddings and LLM, Next.js 16 console
+- **Impact:** **100% pass rate** on a 40-case RAG evaluation suite (Recall@5 100%, MRR 1.0) with **207 automated test cases** across 20 test files
+- **Safety:** cross-tenant IDOR isolation, prompt-injection defenses, cited answers with grounded abstention, Playwright E2E checks
 
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=flat-square&logo=mongodb&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 
 ---
 
