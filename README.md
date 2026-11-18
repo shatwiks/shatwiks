@@ -102,134 +102,57 @@ SQL         █░░░░░░░░░░░░░░░░░░░░░�
 
 ## 🚀 Featured Projects
 
-### 1. [AegisOps: Autonomous AIOps & Self-Healing Kubernetes Control Plane](https://github.com/shatwiks/AegisOps)
-*Locally runnable AIOps control plane, CMDB blast-radius engine, and self-healing Kubernetes operator.*
+*All 10 projects built across distributed systems, applied AI, cloud-native infrastructure, and full-stack engineering — ranked by systems depth and recruiter impact.*
 
-- **Architecture:** FastAPI + PostgreSQL (`pgvector` + `SKIP LOCKED` outbox) + Redis leases + local Ollama, React 18 / TypeScript console, Terraform + `kind` Kubernetes + GitHub Actions CI
-- **Impact:** **65/65** pytest checks passing (unit, live K8s/DB integration, Playwright E2E), **240/240** `k6` burst checks (`0%` failed), and **4/4** live chaos scenarios verified with a 60s recovery watchdog
-- **Security:** fail-closed edge PII scrubber (`1.00` precision & recall), Keycloak OIDC PKCE + action-bound TOTP MFA approval gate, and deterministic refusal for unsafe remediation
+### 1. [AegisOps — Autonomous AIOps & Self-Healing Kubernetes Control Plane](https://github.com/shatwiks/AegisOps)
+Locally runnable AIOps control plane and Kubernetes operator that scrubs PII fail-closed (`1.00` precision/recall), maps CMDB blast radius, retrieves runbooks via `pgvector` + Ollama hybrid RAG, and either auto-heals safely, enforces Keycloak OIDC + TOTP MFA approval, or deterministically refuses unsafe remediation before verifying 60s of sustained recovery.
+Verified end-to-end with **65/65** pytest tests (unit, live K8s/DB integration, Playwright E2E), **240/240** `k6` burst checks (`0%` errors), **4/4** live chaos scenarios, Ruff/Mypy clean across 50 Python modules, and GitHub Actions CI.
+**Stack:** `Python` · `FastAPI` · `Kubernetes (kind)` · `Terraform` · `PostgreSQL + pgvector` · `Redis` · `Keycloak` · `Ollama` · `React / TypeScript`
 
-<details><summary>🏗️ Architecture</summary>
+### 2. [Bastion Hybrid RAG — Enterprise Multi-Tenant Knowledge Engine](https://github.com/shatwiks/Bastion-hybrid-rag)
+Multi-tenant enterprise RAG platform that eliminates top-K permission leaks by injecting JWT `tenant_id` and `allowed_roles` directly into PostgreSQL `WHERE` clauses before `pgvector` HNSW + dual-FTS Reciprocal Rank Fusion, paired with a scoped Redis 8 semantic cache and a `MiniLM` cross-encoder refusal gate (`0` LLM tokens spent below `0.65`).
+Benchmarked at **100.0% retrieval precision** and **1.0000 MRR** (+32.59% over dense baseline) across 28 probes, **0.0% ungrounded answers** across 14 adversarial traps, and **0.0% RBAC leakage**, backed by 22 unit/integration test suites and Docker Compose.
+**Stack:** `Python` · `FastAPI` · `PostgreSQL 17 + pgvector` · `Redis 8` · `PyTorch / Cross-Encoder` · `LiteLLM / Ollama` · `Next.js 16` · `Docker`
 
-```mermaid
-flowchart LR
-  AM[Alertmanager webhook] --> PII[Edge PII scrubber]
-  PII --> OB[(PostgreSQL outbox)]
-  OB --> RAG[Hybrid RAG - pgvector + Ollama]
-  RAG --> POL{Policy & risk gate}
-  POL -->|low risk| K8S[K8s remediation]
-  POL -->|high risk| MFA[Keycloak + TOTP MFA]
-  POL -->|unsafe| REF[Deterministic refusal]
-  K8S --> WD[60s watchdog]
-  WD -->|healthy| RES[Resolved]
-```
-</details>
+### 3. [Distributed Flash-Sale & Cloud Checkout Engine](https://github.com/shatwiks/distributed-flash-sale-engine) • [Live Demo](https://distributed-flash-sale-engine-bj7q.vercel.app/)
+High-contention ticket checkout engine engineered with an `O(1)` atomic Redis 7 Lua stock gate, Redlock distributed locking, two-tier idempotency keys, and Saga `INCRBY` rollbacks to keep Redis and PostgreSQL 16 consistent even during simulated DB crashes.
+Benchmarked with `k6` at **10,000+ RPS** with **0.00% overbooking** and **93% lower p95 latency** (`271 ms → 18.5 ms`), shipped with an interactive Next.js 16 Duel Mode visualizer, Docker Compose, and AWS ECS Terraform IaC.
+**Stack:** `Node.js` · `Express` · `Redis 7 (Lua)` · `PostgreSQL 16` · `Next.js 16` · `k6` · `Docker` · `AWS ECS / Terraform`
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+### 4. [PolyPulse — Cross-Venue Prediction-Market Orderbook & Markout Pipeline](https://github.com/shatwiks/polypulse)
+Low-latency market-data and cross-venue arbitrage analytics pipeline bridging Polymarket and Kalshi with a cache-aligned **C++20** integer-tick orderbook (`extern "C"` FFI), self-healing WebSocket ingestion, SQLite WAL journaling, and ClickHouse materialized analytics (`p50 = 21–33 ms`) for 5s/30s/60s post-trade wallet markouts.
+Implements depth-aware VWAP, official Polymarket & CFTC fee curves, and a React 19 Web Worker terminal; verified offline with **133 pytest tests**, C++20 unit assertions, TypeScript production builds, and GitHub Actions CI.
+**Stack:** `C++20` · `Python AsyncIO` · `FastAPI` · `ClickHouse` · `SQLite WAL` · `React 19 / TypeScript` · `Docker`
 
-### 2. [Bastion Hybrid RAG: Multi-Tenant Knowledge Engine](https://github.com/shatwiks/Bastion-hybrid-rag)
-*Enterprise multi-tenant RAG engine with pre-retrieval RBAC isolation, RRF hybrid search, and deterministic hallucination refusal.*
+### 5. [GlamGo — Multi-Vendor Beauty Marketplace & Booking Platform](https://github.com/shatwiks/Glamgo) • [Live Demo](https://glamgo-ricoz.vercel.app/) • [API Docs](https://glamgo-backend-lqn6.onrender.com/docs)
+Production full-stack marketplace unifying at-home services, salon appointments, and multi-vendor beauty retail across 5 RBAC portals with deadlock-free `FOR UPDATE` stock reservations, server-authoritative Razorpay paise orders, HMAC-SHA256 webhook reconciliation, and append-only PostgreSQL audit triggers.
+Cut live catalog API latency by **~7.3×** (`2.20s → 0.30s`, `−60.9%` wire bytes) via `selectinload`, 12 B-tree indexes, Redis/in-memory caching, GZip, and SWR hydration; verified by **62 pytest tests**, Playwright viewport audits, and 3-stage GitHub Actions CI.
+**Stack:** `Python` · `FastAPI` · `PostgreSQL 16` · `SQLAlchemy / Alembic` · `Redis 7` · `Razorpay` · `Vite / JS` · `Docker`
 
-- **Architecture:** Async FastAPI + PostgreSQL 17 (`pgvector` HNSW + dual-FTS) + Redis 8 semantic cache + `MiniLM` cross-encoder + Next.js 16 / React 19 SSE console, Docker Compose
-- **Impact:** **100.0%** retrieval precision & **1.0000 MRR** (+32.59% lift over dense baseline) across 28 probes; **0.0%** ungrounded answers on 14 adversarial traps (`all_gates_passed: true`)
-- **Security:** JWT `tenant_id` & `allowed_roles` enforced in SQL prior to ranking (**0.0%** RBAC leakage), scoped semantic cache, and cross-encoder refusal gate (`< 0.65` short-circuits with 0 LLM tokens)
+### 6. [PayGuard AI — Agentic Payment Dispute Triage & RAG Engine](https://github.com/shatwiks/PayGuard-AI-Agentic-Payment-Triage-RAG-Engine)
+Multi-agent payment exception and chargeback triage platform combining FastAPI agent orchestration, PostgreSQL 16 + `pgvector` hybrid retrieval (full-text + dense vectors with RRF), local Ollama (`nomic-embed-text`, `llama3.2`), and a Next.js 16 operations console with human-in-the-loop review gates.
+Achieved **100% pass rate** on a 40-case RAG evaluation suite (Recall@5 `100%`, MRR `1.0`) with **207 automated test cases** across 20 test files, 8/8 Playwright E2E tests, strict multi-tenant IDOR isolation, and prompt-injection hardening.
+**Stack:** `Python` · `FastAPI` · `PostgreSQL 16 + pgvector` · `Ollama` · `Redis` · `Next.js 16 / React 19` · `Docker`
 
-<details><summary>🏗️ Architecture</summary>
+### 7. [StockPulse — Multi-Tenant B2B Inventory & POS Order Engine](https://github.com/shatwiks/StockPulse-Multi-Tenant-Inventory-Order-Engine)
+Multi-tenant B2B inventory and POS checkout engine that eliminates overselling and PostgreSQL `40P01` deadlocks using deterministic row-lock ordering (`SELECT ... FOR UPDATE ORDER BY id ASC`) and `stock_quantity >= 0` DB constraints across 3 isolated RBAC tiers.
+Verified through 10-thread concurrent checkout stress tests (`0` negative-stock drift), **20/20** production-readiness items, WCAG 2.1 AA accessibility checks, an interactive Three.js 3D warehouse console, OpenAPI 3.0 docs, and GitHub Actions CI.
+**Stack:** `TypeScript` · `Next.js 16 / React 19` · `Node.js / Express` · `PostgreSQL 16` · `Prisma` · `Three.js` · `Docker`
 
-```mermaid
-flowchart LR
-  Q[User query + JWT] --> SC[(Redis 8 semantic cache)]
-  SC -->|hit| SSE[SSE stream + citations]
-  SC -->|miss| HYB[Pre-filtered pgvector + dual-FTS RRF]
-  HYB --> CE{Cross-encoder >= 0.65?}
-  CE -->|no| REF[Deterministic refusal - 0 tokens]
-  CE -->|yes| GEN[Grounded generator]
-  GEN --> SSE
-```
-</details>
+### 8. [RicozViz — Enterprise Multi-Tenant BI & DuckDB AI Analytics Platform](https://github.com/shatwiks/ric0fc)
+Dual-storage SaaS analytics platform pairing PostgreSQL multi-tenant RBAC with an embedded **DuckDB** columnar query engine for sub-second OLAP exploration, a 6-chart drag-and-drop dashboard studio with 192-bit share tokens, and a schema-safe Google Gemini AI Analyst.
+Hardened with **42/42** passing backend security/regression tests and **12/12** Playwright-verified pages (`0` console/network errors), with cloud deployment configured for Vercel, Render, and Supabase.
+**Stack:** `TypeScript` · `Next.js 16` · `Python / FastAPI` · `DuckDB` · `PostgreSQL / Supabase` · `Google Gemini` · `Docker`
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+### 9. [OrderFlow — Real-Time Multi-Restaurant Commerce & Delivery Platform](https://github.com/shatwiks/Real-Time-Commerce-and-Web-Application-Platform) • [Live Demo](https://food-full-stack-kappa.vercel.app/)
+Real-time food ordering and fulfillment engine featuring room-partitioned Socket.io order tracking (`order:<id>`, `restaurant:<id>`), database-authoritative ACID billing that rejects client price tampering, and step-up email 2FA OTP with atomic 3-attempt burn protection.
+Ships with Vitest/Supertest suites (`auth-2fa`, `core-api`), Docker Compose, GitHub Actions CI, and live Vercel + Render deployment.
+**Stack:** `TypeScript` · `React` · `Zustand` · `Node.js / Express` · `Socket.io` · `Prisma` · `PostgreSQL 15` · `Docker`
 
-### 3. [StockPulse: Multi-Tenant Inventory & Order Engine](https://github.com/shatwiks/StockPulse-Multi-Tenant-Inventory-Order-Engine)
-*Multi-tenant B2B inventory platform and high-concurrency POS order engine.*
-
-- **Architecture:** Express + Prisma on PostgreSQL 16, Next.js 16 / React 19 client with TanStack Query, Dockerized with GitHub Actions CI
-- **Impact:** eliminated overselling and PostgreSQL deadlocks with deterministic row-lock ordering (`SELECT ... FOR UPDATE ORDER BY id`), verified by 10-thread parallel stress tests with **0 negative-stock drift**
-- **Security:** zero-trust tenant isolation across Admin, Manager and Cashier roles; `stock_quantity >= 0` DB constraints; WCAG 2.1 AA audited UI
-
-<details><summary>🏗️ Architecture</summary>
-
-```mermaid
-flowchart LR
-  C[Cashier POS - Next.js] -->|JWT + tenant scope| API[Express API]
-  API --> TX{{Interactive transaction}}
-  TX -->|FOR UPDATE ORDER BY id| PG[(PostgreSQL 16)]
-  PG -->|stock_quantity >= 0| OK[Order committed]
-  TX -->|shortage| E[409 Conflict + cart reconcile]
-```
-</details>
-
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white)
-
-### 4. [Distributed Flash-Sale and Cloud Checkout Engine](https://github.com/shatwiks/distributed-flash-sale-engine) • [Live Demo](https://distributed-flash-sale-engine-bj7q.vercel.app/)
-*A high-contention checkout engine built to sell limited stock under burst traffic without overbooking.*
-
-- **Architecture:** O(1) atomic Redis Lua stock gate with Redlock distributed locking, PostgreSQL for durable orders, Dockerized services on AWS
-- **Impact:** sustained **10,000+ RPS** with **0.00% overbooking**; cut **p95 latency by 93%** (271 ms to 18.5 ms) by replacing PostgreSQL row locks (`SELECT FOR UPDATE`)
-- **Reliability:** Saga-style rollbacks (`INCRBY`) keep Redis and PostgreSQL consistent on write failures; two-tier idempotency keys block duplicate payments
-
-<details><summary>🏗️ Architecture</summary>
-
-```mermaid
-flowchart LR
-  U[Burst traffic 10k+ RPS] --> API[Express API]
-  API -->|atomic Lua script| R[(Redis 7 stock gate)]
-  R -->|reserved| PG[(PostgreSQL 16 orders)]
-  PG -.->|write fails| RB[Saga INCRBY rollback]
-  RB -.-> R
-  R -->|sold out| X[409 Conflict]
-```
-</details>
-
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=nodedotjs&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-![Redis](https://img.shields.io/badge/Redis-DC382D?style=flat-square&logo=redis&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
-![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white)
-
-### 5. [Real-Time Commerce and Delivery Platform](https://github.com/shatwiks/Real-Time-Commerce-and-Web-Application-Platform) • [Live Demo](https://food-full-stack-kappa.vercel.app/)
-*Food ordering and live delivery platform with a responsive React/TypeScript storefront.*
-
-- **Architecture:** event-driven Socket.io (namespaces, room isolation), Express middleware, Neon PostgreSQL via Prisma, deployed on Vercel and Render
-- **Impact:** order-lifecycle sync under **50 ms** across **1,500+** simulated sessions; **p95 catalog query latency down 64%** with compound indexes and pooling
-- **Security:** email 2FA/OTP, signed HTTP-only JWT sessions, parameterized middleware
-
-<details><summary>🏗️ Architecture</summary>
-
-```mermaid
-flowchart LR
-  C[React + Zustand client] -->|REST| API[Express API]
-  C <-->|WebSocket| S[Socket.io rooms]
-  API -->|login| OTP[Step-up 2FA OTP]
-  API -->|DB-priced checkout| PG[(PostgreSQL via Prisma)]
-  API -->|status change| S
-  S -->|order:id / restaurant:id| C
-```
-</details>
-
-![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=flat-square&logo=socketdotio&logoColor=white)
-![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white)
+### 10. [MedicineLink — Verified Surplus Medicine Redistribution Platform](https://github.com/shatwiks/Medicine-Link)
+Closed-loop healthcare prototype connecting donors, licensed pharmacists, and verified NGOs via Tesseract.js OCR blister-pack intake, a 12-factor clinical eligibility rules engine, Haversine-weighted geo-matching, and cryptographic QR delivery confirmation.
+Built on native Node.js SQLite (`15` tables, strict `CHECK` constraints, append-only audit triggers, and partial unique concurrency indexes) with 4 persona portals, Swagger OpenAPI docs, and an automated Vitest suite.
+**Stack:** `TypeScript` · `React 18 / Vite` · `Node.js / Express` · `SQLite (WAL)` · `Tesseract.js OCR` · `Vitest`
 
 ---
 
