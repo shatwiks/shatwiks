@@ -74,35 +74,89 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 
 ## 📊 Top Skills (measured from my repos)
 
-*Measured by non-blank lines of code and how many repos use each tool, across 10 public repositories (148k+ lines).*
+*Measured by non-blank lines of code and how many repos use each tool, across 10 public repositories (168k+ lines).*
 
 **Languages**
 
 ```text
-TypeScript  ███████████████████░░░░░░░░░░░░░░░░░░░░░  47.8%  · 71.2k lines · 8 repos
-Python      ██████████████░░░░░░░░░░░░░░░░░░░░░░░░░░  35.3%  · 52.5k lines · 4 repos
-JavaScript  █████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  12.5%  · 18.6k lines · 5 repos
-CSS         █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   2.6%  ·  3.8k lines · 9 repos
-C++20       █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0.9%  ·  1.3k lines · orderbook engine
-SQL         █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0.9%  ·  1.3k lines · 8 repos
+Python      ██████████████████░░░░░░░░░░░░░░░░░░░░░░  45.2%  · 76.2k lines · 6 repos
+TypeScript  ████████████████░░░░░░░░░░░░░░░░░░░░░░░░  39.5%  · 66.7k lines · 9 repos
+JavaScript  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  11.1%  · 18.7k lines · 6 repos
+CSS         █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   2.6%  ·  4.4k lines · 10 repos
+C++20       █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0.8%  ·  1.3k lines · orderbook engine
+SQL         █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0.7%  ·  1.2k lines · 8 repos
 ```
 
 **Most-used frameworks & infrastructure** *(number of repos)*
 
 | Frontend | Backend | Data & Infra |
 | :--- | :--- | :--- |
-| ⚛️ React · **8** | ⚡ FastAPI · **4** | 🐘 PostgreSQL · **7** |
-| 🎨 Tailwind CSS · **6** | 🚂 Express · **4** | 🐳 Docker · **7** |
-| ▲ Next.js · **5** | 🛡️ Zod · **4** | ⚙️ GitHub Actions CI · **5** *(+ profile)* |
-| ⚡ Vite · **4** | 🧱 SQLAlchemy + Pydantic · **3** | 🟥 Redis · **3** |
-| 🧊 Three.js · **2** | 🔷 Prisma ORM · **3** | 🪶 SQLite · **2** |
-| 🐻 Zustand · **2** | 🧪 pytest / Vitest · **2 each** | 🧭 pgvector · DuckDB · Terraform · **1 each** |
+| ⚛️ React · **9** | ⚡ FastAPI · **6** | 🐳 Docker · **9** |
+| 🎨 Tailwind CSS · **6** | 🧱 SQLAlchemy + Pydantic · **5** | 🐘 PostgreSQL · **8** |
+| ▲ Next.js · **5** | 🚂 Express · **4** | ⚙️ GitHub Actions CI · **6** *(+ profile)* |
+| ⚡ Vite · **5** | 🛠️ Alembic · **4** | 🟥 Redis · **5** |
+| 🧊 Three.js · **2** | 🧪 pytest · **4** *(+ Vitest · 2)* | 🧭 pgvector · **3** *(+ SQLite · 2)* |
+| 🐻 Zustand · **2** | 🛡️ Zod · **3** *(+ Prisma · 2)* | ☸️ Terraform · **2** *(+ K8s · 1)* |
 
 ---
 
 ## 🚀 Featured Projects
 
-### 1. [StockPulse: Multi-Tenant Inventory & Order Engine](https://github.com/shatwiks/StockPulse-Multi-Tenant-Inventory-Order-Engine)
+### 1. [AegisOps: Autonomous AIOps & Self-Healing Kubernetes Control Plane](https://github.com/shatwiks/AegisOps)
+*Locally runnable AIOps control plane, CMDB blast-radius engine, and self-healing Kubernetes operator.*
+
+- **Architecture:** FastAPI + PostgreSQL (`pgvector` + `SKIP LOCKED` outbox) + Redis leases + local Ollama, React 18 / TypeScript console, Terraform + `kind` Kubernetes + GitHub Actions CI
+- **Impact:** **65/65** pytest checks passing (unit, live K8s/DB integration, Playwright E2E), **240/240** `k6` burst checks (`0%` failed), and **4/4** live chaos scenarios verified with a 60s recovery watchdog
+- **Security:** fail-closed edge PII scrubber (`1.00` precision & recall), Keycloak OIDC PKCE + action-bound TOTP MFA approval gate, and deterministic refusal for unsafe remediation
+
+<details><summary>🏗️ Architecture</summary>
+
+```mermaid
+flowchart LR
+  AM[Alertmanager webhook] --> PII[Edge PII scrubber]
+  PII --> OB[(PostgreSQL outbox)]
+  OB --> RAG[Hybrid RAG - pgvector + Ollama]
+  RAG --> POL{Policy & risk gate}
+  POL -->|low risk| K8S[K8s remediation]
+  POL -->|high risk| MFA[Keycloak + TOTP MFA]
+  POL -->|unsafe| REF[Deterministic refusal]
+  K8S --> WD[60s watchdog]
+  WD -->|healthy| RES[Resolved]
+```
+</details>
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-326CE5?style=flat-square&logo=kubernetes&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+
+### 2. [Bastion Hybrid RAG: Multi-Tenant Knowledge Engine](https://github.com/shatwiks/Bastion-hybrid-rag)
+*Enterprise multi-tenant RAG engine with pre-retrieval RBAC isolation, RRF hybrid search, and deterministic hallucination refusal.*
+
+- **Architecture:** Async FastAPI + PostgreSQL 17 (`pgvector` HNSW + dual-FTS) + Redis 8 semantic cache + `MiniLM` cross-encoder + Next.js 16 / React 19 SSE console, Docker Compose
+- **Impact:** **100.0%** retrieval precision & **1.0000 MRR** (+32.59% lift over dense baseline) across 28 probes; **0.0%** ungrounded answers on 14 adversarial traps (`all_gates_passed: true`)
+- **Security:** JWT `tenant_id` & `allowed_roles` enforced in SQL prior to ranking (**0.0%** RBAC leakage), scoped semantic cache, and cross-encoder refusal gate (`< 0.65` short-circuits with 0 LLM tokens)
+
+<details><summary>🏗️ Architecture</summary>
+
+```mermaid
+flowchart LR
+  Q[User query + JWT] --> SC[(Redis 8 semantic cache)]
+  SC -->|hit| SSE[SSE stream + citations]
+  SC -->|miss| HYB[Pre-filtered pgvector + dual-FTS RRF]
+  HYB --> CE{Cross-encoder >= 0.65?}
+  CE -->|no| REF[Deterministic refusal - 0 tokens]
+  CE -->|yes| GEN[Grounded generator]
+  GEN --> SSE
+```
+</details>
+
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+
+### 3. [StockPulse: Multi-Tenant Inventory & Order Engine](https://github.com/shatwiks/StockPulse-Multi-Tenant-Inventory-Order-Engine)
 *Multi-tenant B2B inventory platform and high-concurrency POS order engine.*
 
 - **Architecture:** Express + Prisma on PostgreSQL 16, Next.js 16 / React 19 client with TanStack Query, Dockerized with GitHub Actions CI
@@ -126,7 +180,7 @@ flowchart LR
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 ![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white)
 
-### 2. [Distributed Flash-Sale and Cloud Checkout Engine](https://github.com/shatwiks/distributed-flash-sale-engine) • [Live Demo](https://distributed-flash-sale-engine-bj7q.vercel.app/)
+### 4. [Distributed Flash-Sale and Cloud Checkout Engine](https://github.com/shatwiks/distributed-flash-sale-engine) • [Live Demo](https://distributed-flash-sale-engine-bj7q.vercel.app/)
 *A high-contention checkout engine built to sell limited stock under burst traffic without overbooking.*
 
 - **Architecture:** O(1) atomic Redis Lua stock gate with Redlock distributed locking, PostgreSQL for durable orders, Dockerized services on AWS
@@ -153,7 +207,7 @@ flowchart LR
 ![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![AWS](https://img.shields.io/badge/AWS-232F3E?style=flat-square&logo=amazonwebservices&logoColor=white)
 
-### 3. [Real-Time Commerce and Delivery Platform](https://github.com/shatwiks/Real-Time-Commerce-and-Web-Application-Platform) • [Live Demo](https://food-full-stack-kappa.vercel.app/)
+### 5. [Real-Time Commerce and Delivery Platform](https://github.com/shatwiks/Real-Time-Commerce-and-Web-Application-Platform) • [Live Demo](https://food-full-stack-kappa.vercel.app/)
 *Food ordering and live delivery platform with a responsive React/TypeScript storefront.*
 
 - **Architecture:** event-driven Socket.io (namespaces, room isolation), Express middleware, Neon PostgreSQL via Prisma, deployed on Vercel and Render
@@ -176,58 +230,6 @@ flowchart LR
 ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
 ![Socket.io](https://img.shields.io/badge/Socket.io-010101?style=flat-square&logo=socketdotio&logoColor=white)
 ![Prisma](https://img.shields.io/badge/Prisma-2D3748?style=flat-square&logo=prisma&logoColor=white)
-
-### 4. [MedicineLink: Verified Surplus Medicine Redistribution](https://github.com/shatwiks/Medicine-Link)
-*Closed-loop platform connecting donors, licensed pharmacists and verified NGOs to redistribute unused sealed medicines.*
-
-- **Architecture:** Express + TypeScript REST API on native SQLite (WAL, 15 tables, append-only audit triggers), React 18 + Vite + Tailwind portals for 4 roles
-- **Intelligence:** Tesseract.js OCR extracts batch, expiry and manufacturer; 12-factor clinical eligibility rules engine; Haversine-weighted NGO matching
-- **Trust:** pharmacist review queue with cryptographic QR issuance and a full donation state machine from intake to delivery
-
-<details><summary>🏗️ Architecture</summary>
-
-```mermaid
-flowchart LR
-  D[Donor upload] --> OCR[Tesseract OCR]
-  OCR --> RULES{12-factor rules}
-  RULES -->|fail| REJ[Auto-reject]
-  RULES -->|pass| PH[Pharmacist review + QR]
-  PH --> M[Haversine NGO match]
-  M --> P[Pickup]
-  P --> DEL[Delivered]
-```
-</details>
-
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![SQLite](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
-
-### 5. [PayGuard AI: Agentic Payment Triage and RAG Engine](https://github.com/shatwiks/PayGuard-AI-Agentic-Payment-Triage-RAG-Engine)
-*Multi-agent payment-dispute triage and policy-grounded RAG resolution platform.*
-
-- **Architecture:** FastAPI agent orchestration, PostgreSQL 16 + pgvector hybrid retrieval (full-text + vectors with Reciprocal Rank Fusion), local Ollama embeddings and LLM, Next.js 16 console
-- **Impact:** **100% pass rate** on a 40-case RAG evaluation suite (Recall@5 100%, MRR 1.0) with **207 automated test cases** across 20 test files
-- **Safety:** cross-tenant IDOR isolation, prompt-injection defenses, cited answers with grounded abstention, Playwright E2E checks
-
-<details><summary>🏗️ Architecture</summary>
-
-```mermaid
-flowchart LR
-  T[Payment exception] --> ORC[Agent orchestrator - FastAPI]
-  ORC --> TRI[Triage agent]
-  ORC --> RISK[Fraud and risk agent]
-  ORC --> RAG[RAG policy agent]
-  RAG -->|full-text + vector + RRF| PG[(PostgreSQL + pgvector)]
-  RAG -->|embeddings and LLM| OL[Ollama]
-  ORC --> H{High risk?}
-  H -->|yes| HITL[Human approval]
-  H -->|no| ACT[Cited resolution]
-```
-</details>
-
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-009688?style=flat-square&logo=fastapi&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
 
 ---
 
