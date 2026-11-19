@@ -385,31 +385,41 @@ def call_gemini(prompt: str) -> str:
     if not GEMINI_API_KEY:
         raise RuntimeError("GEMINI_API_KEY secret is not set.")
 
-    # Always try the free Google AI Studio Gemini Developer API (vertexai=False) first;
-    # modern AI Studio keys also use the "AQ." prefix and work without GCP billing.
-    backends = [(False, "Google AI Studio")]
-    if GEMINI_API_KEY.startswith("AQ."):
-        backends.append((True, "Vertex AI Express"))
+    client = genai.Client(api_key=GEMINI_API_KEY)
+
+    candidate_models = ["gemini-3.8-flash", "gemini-3.5-flash-lite"]
+    # Future-proof: append any currently available Flash models discovered from the API
+    try:
+        discovered = []
+        for m in client.models.list():
+            mname = (getattr(m, "name", "") or "").removeprefix("models/")
+            actions = getattr(m, "supported_actions", None) or []
+            if "gemini" in mname and "flash" in mname and "embedding" not in mname:
+                if not actions or "generateContent" in actions:
+                    discovered.append(mname)
+        for mname in sorted(set(discovered), reverse=True):
+            if mname not in candidate_models:
+                candidate_models.append(mname)
+    except Exception as exc:  # noqa: BLE001
+        print(f"[warn] Could not list models for fallback: {exc}", file=sys.stderr)
 
     last_err: Exception | None = None
-    for use_vertex, label in backends:
-        client = genai.Client(vertexai=use_vertex, api_key=GEMINI_API_KEY)
-        for model_name in ("gemini-3.8-flash", "gemini-3.5-flash-lite", "gemini-2.5-flash"):
-            try:
-                resp = client.models.generate_content(
-                    model=model_name,
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        response_mime_type="application/json",
-                        temperature=0.2,
-                    ),
-                )
-                if resp.text:
-                    print(f"[info] Generated ranked projects via {label} ({model_name}).")
-                    return resp.text
-            except Exception as exc:  # noqa: BLE001
-                last_err = exc
-                print(f"[warn] {label} {model_name} failed: {exc}", file=sys.stderr)
+    for model_name in candidate_models[:6]:
+        try:
+            resp = client.models.generate_content(
+                model=model_name,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    response_mime_type="application/json",
+                    temperature=0.2,
+                ),
+            )
+            if resp.text:
+                print(f"[info] Generated ranked projects via Google AI Studio ({model_name}).")
+                return resp.text
+        except Exception as exc:  # noqa: BLE001
+            last_err = exc
+            print(f"[warn] Google AI Studio {model_name} failed: {exc}", file=sys.stderr)
     raise RuntimeError(f"All Gemini attempts failed: {last_err}")
 
 
