@@ -382,78 +382,35 @@ def call_gemini(prompt: str) -> str:
     from google import genai
     from google.genai import types
 
-    is_vertex_express = GEMINI_API_KEY.startswith("AQ.")
-    client = genai.Client(vertexai=is_vertex_express, api_key=GEMINI_API_KEY)
+    if not GEMINI_API_KEY:
+        raise RuntimeError("GEMINI_API_KEY secret is not set.")
+
+    # Always try the free Google AI Studio Gemini Developer API (vertexai=False) first;
+    # modern AI Studio keys also use the "AQ." prefix and work without GCP billing.
+    backends = [(False, "Google AI Studio")]
+    if GEMINI_API_KEY.startswith("AQ."):
+        backends.append((True, "Vertex AI Express"))
 
     last_err: Exception | None = None
-    for model_name in ("gemini-2.5-flash", "gemini-2.0-flash"):
-        try:
-            resp = client.models.generate_content(
-                model=model_name,
-                contents=prompt,
-                config=types.GenerateContentConfig(
-                    response_mime_type="application/json",
-                    temperature=0.2,
-                ),
-            )
-            if resp.text:
-                return resp.text
-        except Exception as exc:  # noqa: BLE001
-            last_err = exc
-            print(f"[warn] Gemini {model_name} failed: {exc}", file=sys.stderr)
-    raise RuntimeError(f"All Gemini models failed: {last_err}")
-
-
-def call_github_models(prompt: str) -> str:
-    if not GITHUB_TOKEN:
-        raise RuntimeError("GITHUB_TOKEN missing for GitHub Models fallback")
-
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "Authorization": f"Bearer {GITHUB_TOKEN}",
-        "X-GitHub-Api-Version": "2022-11-28",
-        "Content-Type": "application/json",
-    }
-    last_err: Exception | None = None
-    for model_name in ("openai/gpt-4.1-mini", "openai/gpt-4o-mini"):
-        try:
-            resp = requests.post(
-                "https://models.github.ai/inference/chat/completions",
-                headers=headers,
-                json={
-                    "model": model_name,
-                    "temperature": 0.2,
-                    "max_tokens": 3000,
-                    "messages": [
-                        {
-                            "role": "system",
-                            "content": (
-                                "You are a Staff Engineer writing crisp, strictly factual, "
-                                "recruiter-ready GitHub README project descriptions. Return valid JSON only."
-                            ),
-                        },
-                        {"role": "user", "content": prompt},
-                    ],
-                },
-                timeout=90,
-            )
-            body_preview = (resp.text or "")[:400].replace("\n", " ")
-            if resp.status_code >= 400:
-                raise RuntimeError(f"HTTP {resp.status_code}: {body_preview}")
-            if not resp.text or not resp.text.strip():
-                raise RuntimeError(
-                    f"Empty response body (HTTP {resp.status_code}, "
-                    f"content-type={resp.headers.get('content-type')})"
+    for use_vertex, label in backends:
+        client = genai.Client(vertexai=use_vertex, api_key=GEMINI_API_KEY)
+        for model_name in ("gemini-2.5-flash", "gemini-2.5-flash-lite", "gemini-2.0-flash"):
+            try:
+                resp = client.models.generate_content(
+                    model=model_name,
+                    contents=prompt,
+                    config=types.GenerateContentConfig(
+                        response_mime_type="application/json",
+                        temperature=0.2,
+                    ),
                 )
-            data = resp.json()
-            content = data["choices"][0]["message"]["content"]
-            if content:
-                print(f"[info] GitHub Models succeeded with {model_name}.")
-                return content
-        except Exception as exc:  # noqa: BLE001
-            last_err = exc
-            print(f"[warn] GitHub Models {model_name} failed: {exc}", file=sys.stderr)
-    raise RuntimeError(f"All GitHub Models fallbacks failed: {last_err}")
+                if resp.text:
+                    print(f"[info] Generated ranked projects via {label} ({model_name}).")
+                    return resp.text
+            except Exception as exc:  # noqa: BLE001
+                last_err = exc
+                print(f"[warn] {label} {model_name} failed: {exc}", file=sys.stderr)
+    raise RuntimeError(f"All Gemini attempts failed: {last_err}")
 
 
 def generate_ranked_projects(
@@ -488,17 +445,7 @@ def generate_ranked_projects(
         + json.dumps(payload, ensure_ascii=False)
     )
 
-    raw_text: str | None = None
-    if GEMINI_API_KEY:
-        try:
-            raw_text = call_gemini(prompt)
-            print("[info] Ranked projects generated via Gemini API.")
-        except Exception as exc:  # noqa: BLE001
-            print(f"[warn] Falling back to GitHub Models after Gemini error: {exc}", file=sys.stderr)
-
-    if raw_text is None:
-        raw_text = call_github_models(prompt)
-        print("[info] Ranked projects generated via GitHub Models fallback.")
+    raw_text = call_gemini(prompt)
 
     raw_text = raw_text.strip()
     if raw_text.startswith("```"):
