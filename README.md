@@ -74,16 +74,16 @@ I build systems that stay correct under load: atomic inventory gates, real-time 
 
 ## 📊 Top Skills (measured from my repos)
 
-*Measured by non-blank lines of code and how many repos use each tool, across 10 public repositories (168k+ lines).*
+*Measured by non-blank lines of code and how many repos use each tool, across 10 public repositories (171k+ lines).*
 
 **Languages**
 
 ```text
-Python      ██████████████████░░░░░░░░░░░░░░░░░░░░░░  45.2%  · 76.2k lines · 6 repos
-TypeScript  ████████████████░░░░░░░░░░░░░░░░░░░░░░░░  39.5%  · 66.7k lines · 9 repos
-JavaScript  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  11.1%  · 18.7k lines · 6 repos
-CSS         █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   2.6%  ·  4.4k lines · 10 repos
-C++20       █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0.8%  ·  1.3k lines · orderbook engine
+Python      ██████████████████░░░░░░░░░░░░░░░░░░░░░░  46.1%  · 79.2k lines · 6 repos
+TypeScript  ████████████████░░░░░░░░░░░░░░░░░░░░░░░░  38.8%  · 66.6k lines · 9 repos
+JavaScript  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  11.0%  · 18.9k lines · 6 repos
+CSS         █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   2.6%  ·  4.5k lines · 10 repos
+C++20       █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0.8%  ·  1.3k lines · 1 repo
 SQL         █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0.7%  ·  1.2k lines · 8 repos
 ```
 
@@ -104,56 +104,55 @@ SQL         █░░░░░░░░░░░░░░░░░░░░░�
 
 *All 10 projects built across distributed systems, applied AI, cloud-native infrastructure, and full-stack engineering — ranked by systems depth and recruiter impact.*
 
-### 1. [AegisOps — Autonomous AIOps & Self-Healing Kubernetes Control Plane](https://github.com/shatwiks/AegisOps)
-Locally runnable AIOps control plane and Kubernetes operator that scrubs PII fail-closed (`1.00` precision/recall), maps CMDB blast radius, retrieves runbooks via `pgvector` + Ollama hybrid RAG, and either auto-heals safely, enforces Keycloak OIDC + TOTP MFA approval, or deterministically refuses unsafe remediation before verifying 60s of sustained recovery.
-Verified end-to-end with **65/65** pytest tests (unit, live K8s/DB integration, Playwright E2E), **240/240** `k6` burst checks (`0%` errors), **4/4** live chaos scenarios, Ruff/Mypy clean across 50 Python modules, and GitHub Actions CI.
-**Stack:** `Python` · `FastAPI` · `Kubernetes (kind)` · `Terraform` · `PostgreSQL + pgvector` · `Redis` · `Keycloak` · `Ollama` · `React / TypeScript`
+### 1. [PolyPulse — Cross-Venue Prediction-Market Orderbook & Markout Pipeline](https://github.com/shatwiks/polypulse)
+High-throughput market data ingestion and orderbook computation engine architected in C++20 and Python AsyncIO to provide unified cross-venue prediction-market execution analysis.
+Verified by empirical hardware microbenchmarks to deliver 56.39M ops/sec throughput and 17.00 ns p50 latency on in-place level updates with ClickHouse analytical storage.
+**Stack:** `C++20` · `Python` · `FastAPI` · `ClickHouse` · `React 19` · `Docker Compose`
 
-### 2. [Bastion Hybrid RAG — Enterprise Multi-Tenant Knowledge Engine](https://github.com/shatwiks/Bastion-hybrid-rag)
-Multi-tenant enterprise RAG platform that eliminates top-K permission leaks by injecting JWT `tenant_id` and `allowed_roles` directly into PostgreSQL `WHERE` clauses before `pgvector` HNSW + dual-FTS Reciprocal Rank Fusion, paired with a scoped Redis 8 semantic cache and a `MiniLM` cross-encoder refusal gate (`0` LLM tokens spent below `0.65`).
-Benchmarked at **100.0% retrieval precision** and **1.0000 MRR** (+32.59% over dense baseline) across 28 probes, **0.0% ungrounded answers** across 14 adversarial traps, and **0.0% RBAC leakage**, backed by 22 unit/integration test suites and Docker Compose.
-**Stack:** `Python` · `FastAPI` · `PostgreSQL 17 + pgvector` · `Redis 8` · `PyTorch / Cross-Encoder` · `LiteLLM / Ollama` · `Next.js 16` · `Docker`
+### 2. [Distributed Flash-Sale Engine — High-Throughput Ticket Booking Architecture](https://github.com/shatwiks/distributed-flash-sale-engine)
+High-concurrency distributed ticketing engine designed to eliminate overbooking and TOCTOU race conditions under sudden 10,000+ RPS demand spikes.
+Employs single-threaded Redis Lua scripts and Redlock distributed locks to guarantee 0.00% overbooking and sub-25ms p95 latency under automated k6 stress testing.
+**Stack:** `Node.js` · `Express` · `TypeScript` · `Redis 7` · `PostgreSQL 16` · `Docker` · `AWS ECS` · `Terraform`
 
-### 3. [Distributed Flash-Sale & Cloud Checkout Engine](https://github.com/shatwiks/distributed-flash-sale-engine) • [Live Demo](https://distributed-flash-sale-engine-bj7q.vercel.app/)
-High-contention ticket checkout engine engineered with an `O(1)` atomic Redis 7 Lua stock gate, Redlock distributed locking, two-tier idempotency keys, and Saga `INCRBY` rollbacks to keep Redis and PostgreSQL 16 consistent even during simulated DB crashes.
-Benchmarked with `k6` at **10,000+ RPS** with **0.00% overbooking** and **93% lower p95 latency** (`271 ms → 18.5 ms`), shipped with an interactive Next.js 16 Duel Mode visualizer, Docker Compose, and AWS ECS Terraform IaC.
-**Stack:** `Node.js` · `Express` · `Redis 7 (Lua)` · `PostgreSQL 16` · `Next.js 16` · `k6` · `Docker` · `AWS ECS / Terraform`
+### 3. [AegisOps — Autonomous AIOps Blast-Radius Engine & Self-Healing K8s Operator](https://github.com/shatwiks/AegisOps)
+Autonomous incident remediation control plane and Kubernetes operator that protects sensitive telemetry, maps microservice blast radius, and executes safe runbook automations.
+Features Keycloak OIDC/TOTP human approval gates, hybrid pgvector runbook retrieval, and 65/65 passing CI tests with unbroken 60-second recovery health proofs.
+**Stack:** `Python 3.12` · `FastAPI` · `Kubernetes` · `PostgreSQL` · `pgvector` · `Keycloak` · `React` · `Docker`
 
-### 4. [PolyPulse — Cross-Venue Prediction-Market Orderbook & Markout Pipeline](https://github.com/shatwiks/polypulse)
-Low-latency market-data and cross-venue arbitrage analytics pipeline bridging Polymarket and Kalshi with a cache-aligned **C++20** integer-tick orderbook (`extern "C"` FFI), self-healing WebSocket ingestion, SQLite WAL journaling, and ClickHouse materialized analytics (`p50 = 21–33 ms`) for 5s/30s/60s post-trade wallet markouts.
-Implements depth-aware VWAP, official Polymarket & CFTC fee curves, and a React 19 Web Worker terminal; verified offline with **133 pytest tests**, C++20 unit assertions, TypeScript production builds, and GitHub Actions CI.
-**Stack:** `C++20` · `Python AsyncIO` · `FastAPI` · `ClickHouse` · `SQLite WAL` · `React 19 / TypeScript` · `Docker`
+### 4. [PayGuard AI — Agentic Payment Dispute Triage & Regulatory RAG Engine](https://github.com/shatwiks/PayGuard-AI-Agentic-Payment-Triage-RAG-Engine)
+Autonomous multi-agent triage system that normalizes multi-rail payment payloads and resolves chargeback disputes against indexed regulatory protocols.
+Backed by an independently audited 178/178 passing test suite across 20 modules in 93.93s, implementing pgvector semantic retrieval and strict multi-tenant isolation.
+**Stack:** `Python 3.14` · `FastAPI` · `PostgreSQL 16` · `pgvector` · `Next.js 15` · `React 19` · `SQLAlchemy`
 
-### 5. [GlamGo — Multi-Vendor Beauty Marketplace & Booking Platform](https://github.com/shatwiks/Glamgo) • [Live Demo](https://glamgo-ricoz.vercel.app/) • [API Docs](https://glamgo-backend-lqn6.onrender.com/docs)
-Production full-stack marketplace unifying at-home services, salon appointments, and multi-vendor beauty retail across 5 RBAC portals with deadlock-free `FOR UPDATE` stock reservations, server-authoritative Razorpay paise orders, HMAC-SHA256 webhook reconciliation, and append-only PostgreSQL audit triggers.
-Cut live catalog API latency by **~7.3×** (`2.20s → 0.30s`, `−60.9%` wire bytes) via `selectinload`, 12 B-tree indexes, Redis/in-memory caching, GZip, and SWR hydration; verified by **62 pytest tests**, Playwright viewport audits, and 3-stage GitHub Actions CI.
-**Stack:** `Python` · `FastAPI` · `PostgreSQL 16` · `SQLAlchemy / Alembic` · `Redis 7` · `Razorpay` · `Vite / JS` · `Docker`
+### 5. [Bastion — Zero-Leak Multi-Tenant Hybrid RAG Engine](https://github.com/shatwiks/Bastion-hybrid-rag)
+Multi-tenant retrieval-augmented generation engine combining reciprocal rank fusion over PostgreSQL pgvector and full-text search with Redis 8 scoped semantic caching.
+Enforces strict tenant isolation and passes an automated two-cohort Ragas evaluation suite comparing dense baselines against adversarial RBAC and refusal traps.
+**Stack:** `Python 3.12` · `FastAPI` · `PostgreSQL 17` · `pgvector` · `Redis 8` · `Next.js 16` · `Ragas`
 
-### 6. [PayGuard AI — Agentic Payment Dispute Triage & RAG Engine](https://github.com/shatwiks/PayGuard-AI-Agentic-Payment-Triage-RAG-Engine)
-Multi-agent payment exception and chargeback triage platform combining FastAPI agent orchestration, PostgreSQL 16 + `pgvector` hybrid retrieval (full-text + dense vectors with RRF), local Ollama (`nomic-embed-text`, `llama3.2`), and a Next.js 16 operations console with human-in-the-loop review gates.
-Achieved **100% pass rate** on a 40-case RAG evaluation suite (Recall@5 `100%`, MRR `1.0`) with **207 automated test cases** across 20 test files, 8/8 Playwright E2E tests, strict multi-tenant IDOR isolation, and prompt-injection hardening.
-**Stack:** `Python` · `FastAPI` · `PostgreSQL 16 + pgvector` · `Ollama` · `Redis` · `Next.js 16 / React 19` · `Docker`
+### 6. [RicozViz — Enterprise BI & Analytical Exploration Platform](https://github.com/shatwiks/ric0fc) • [Live Demo](https://ricozviz.vercel.app)
+Dual-storage business intelligence platform combining DuckDB for sub-second analytical file queries with PostgreSQL for transactional metadata and server-side RBAC.
+Verified with 42/42 security audit tests passed and clean 12/12 Playwright E2E page validations, featuring cryptographic 192-bit share tokens and live cloud deployment.
+**Stack:** `DuckDB` · `PostgreSQL` · `Next.js` · `Python` · `FastAPI` · `Playwright` · `Docker`
 
-### 7. [StockPulse — Multi-Tenant B2B Inventory & POS Order Engine](https://github.com/shatwiks/StockPulse-Multi-Tenant-Inventory-Order-Engine)
-Multi-tenant B2B inventory and POS checkout engine that eliminates overselling and PostgreSQL `40P01` deadlocks using deterministic row-lock ordering (`SELECT ... FOR UPDATE ORDER BY id ASC`) and `stock_quantity >= 0` DB constraints across 3 isolated RBAC tiers.
-Verified through 10-thread concurrent checkout stress tests (`0` negative-stock drift), **20/20** production-readiness items, WCAG 2.1 AA accessibility checks, an interactive Three.js 3D warehouse console, OpenAPI 3.0 docs, and GitHub Actions CI.
-**Stack:** `TypeScript` · `Next.js 16 / React 19` · `Node.js / Express` · `PostgreSQL 16` · `Prisma` · `Three.js` · `Docker`
+### 7. [GlamGo — Beauty Retail Marketplace & Instant Booking Platform](https://github.com/shatwiks/Glamgo) • [Live Demo](https://glamgo-ricoz.vercel.app/) • [API Docs](https://glamgo-backend-lqn6.onrender.com/docs)
+Unified full-stack e-commerce and salon booking platform with server-verified pricing, 10% coupon validation caps, and HTTP 409 double-booking concurrency guards.
+Production-deployed with live Vercel storefront and Render API docs, protected by multi-vendor escrow workflows, Redis caching, and Playwright verification.
+**Stack:** `FastAPI` · `PostgreSQL 16` · `Redis 7` · `React` · `Razorpay` · `Playwright` · `Docker`
 
-### 8. [RicozViz — Enterprise Multi-Tenant BI & DuckDB AI Analytics Platform](https://github.com/shatwiks/ric0fc)
-Dual-storage SaaS analytics platform pairing PostgreSQL multi-tenant RBAC with an embedded **DuckDB** columnar query engine for sub-second OLAP exploration, a 6-chart drag-and-drop dashboard studio with 192-bit share tokens, and a schema-safe Google Gemini AI Analyst.
-Hardened with **42/42** passing backend security/regression tests and **12/12** Playwright-verified pages (`0` console/network errors), with cloud deployment configured for Vercel, Render, and Supabase.
-**Stack:** `TypeScript` · `Next.js 16` · `Python / FastAPI` · `DuckDB` · `PostgreSQL / Supabase` · `Google Gemini` · `Docker`
+### 8. [StockPulse — Multi-Tenant Inventory & POS Order Engine](https://github.com/shatwiks/StockPulse-Multi-Tenant-Inventory-Order-Engine)
+High-concurrency B2B inventory management and POS transaction engine supporting tenant-isolated catalog schemas and multi-warehouse stock allocations.
+Verified with automated CI build validation, Docker Compose deployment, Prisma database migrations, and WCAG 2.1 AA accessibility compliance.
+**Stack:** `TypeScript` · `Next.js 16` · `Express.js` · `PostgreSQL 16` · `Prisma` · `Docker Compose`
 
-### 9. [OrderFlow — Real-Time Multi-Restaurant Commerce & Delivery Platform](https://github.com/shatwiks/Real-Time-Commerce-and-Web-Application-Platform) • [Live Demo](https://food-full-stack-kappa.vercel.app/)
-Real-time food ordering and fulfillment engine featuring room-partitioned Socket.io order tracking (`order:<id>`, `restaurant:<id>`), database-authoritative ACID billing that rejects client price tampering, and step-up email 2FA OTP with atomic 3-attempt burn protection.
-Ships with Vitest/Supertest suites (`auth-2fa`, `core-api`), Docker Compose, GitHub Actions CI, and live Vercel + Render deployment.
-**Stack:** `TypeScript` · `React` · `Zustand` · `Node.js / Express` · `Socket.io` · `Prisma` · `PostgreSQL 15` · `Docker`
+### 9. [OrderFlow — Multi-Restaurant Commerce & Real-Time Fulfillment Engine](https://github.com/shatwiks/Real-Time-Commerce-and-Web-Application-Platform)
+Multi-restaurant ordering and kitchen fulfillment platform utilizing WebSocket events for bidirectional real-time order status tracking and kitchen ticket management.
+Backed by an automated GitHub Actions CI pipeline, Prisma ORM schema migrations on PostgreSQL 15, and Vitest test execution.
+**Stack:** `TypeScript` · `Node.js` · `React 19` · `Socket.io` · `Prisma` · `PostgreSQL 15` · `Docker`
 
-### 10. [MedicineLink — Verified Surplus Medicine Redistribution Platform](https://github.com/shatwiks/Medicine-Link)
-Closed-loop healthcare prototype connecting donors, licensed pharmacists, and verified NGOs via Tesseract.js OCR blister-pack intake, a 12-factor clinical eligibility rules engine, Haversine-weighted geo-matching, and cryptographic QR delivery confirmation.
-Built on native Node.js SQLite (`15` tables, strict `CHECK` constraints, append-only audit triggers, and partial unique concurrency indexes) with 4 persona portals, Swagger OpenAPI docs, and an automated Vitest suite.
-**Stack:** `TypeScript` · `React 18 / Vite` · `Node.js / Express` · `SQLite (WAL)` · `Tesseract.js OCR` · `Vitest`
-
+### 10. [MedicineLink — Surplus Medicine Redistribution Platform](https://github.com/shatwiks/Medicine-Link)
+Academic healthcare redistribution platform engineered to track synthetic surplus pharmaceutical inventory and coordinate multi-role donation requests.
+Built with full-stack TypeScript, verified with passing Vitest suites, and structured around lightweight SQLite persistence and Express REST endpoints.
+**Stack:** `TypeScript` · `React 18` · `Node.js` · `Express` · `SQLite` · `Vitest` · `TailwindCSS`
 ---
 
 ## 🏆 Hackathons & Achievements

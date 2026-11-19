@@ -1,0 +1,186 @@
+{
+  "shas": {
+    "AegisOps": "93c636b32ecd90d94f9e1cb6741836429572cb0f",
+    "Bastion-hybrid-rag": "9313fdee80790e6f4684efe4bc10390fcd0d42ef",
+    "Glamgo": "54ba3db64fcb87f6c45ad2b3b848357cc91fbb83",
+    "Medicine-Link": "080d9a04aa7aeba952f74cf23f8cf24db2004c1f",
+    "PayGuard-AI-Agentic-Payment-Triage-RAG-Engine": "ed4eef4e920fa400f0c84e3e80c800a615ab0631",
+    "Real-Time-Commerce-and-Web-Application-Platform": "0379779616cc142fa4d1e274ad7d409af2c0fff6",
+    "StockPulse-Multi-Tenant-Inventory-Order-Engine": "a80d75d827d51a949f81a66de366b8ec167025e3",
+    "distributed-flash-sale-engine": "84ebcf678713b63032a6acd573a004777a681e05",
+    "polypulse": "2fec282bece2eb6e8fd8b820babe2d93271469ea",
+    "ric0fc": "01acafcd6b38946220d4a763dd0311a80c19a4cc"
+  },
+  "entries": {
+    "polypulse": {
+      "repo": "polypulse",
+      "title": "PolyPulse \u2014 Cross-Venue Prediction-Market Orderbook & Markout Pipeline",
+      "live_demo_url": null,
+      "api_docs_url": null,
+      "line1": "High-throughput market data ingestion and orderbook computation engine architected in C++20 and Python AsyncIO to provide unified cross-venue prediction-market execution analysis.",
+      "line2": "Verified by empirical hardware microbenchmarks to deliver 56.39M ops/sec throughput and 17.00 ns p50 latency on in-place level updates with ClickHouse analytical storage.",
+      "stack": [
+        "C++20",
+        "Python",
+        "FastAPI",
+        "ClickHouse",
+        "React 19",
+        "Docker Compose"
+      ]
+    },
+    "distributed-flash-sale-engine": {
+      "repo": "distributed-flash-sale-engine",
+      "title": "Distributed Flash-Sale Engine \u2014 High-Throughput Ticket Booking Architecture",
+      "live_demo_url": null,
+      "api_docs_url": null,
+      "line1": "High-concurrency distributed ticketing engine designed to eliminate overbooking and TOCTOU race conditions under sudden 10,000+ RPS demand spikes.",
+      "line2": "Employs single-threaded Redis Lua scripts and Redlock distributed locks to guarantee 0.00% overbooking and sub-25ms p95 latency under automated k6 stress testing.",
+      "stack": [
+        "Node.js",
+        "Express",
+        "TypeScript",
+        "Redis 7",
+        "PostgreSQL 16",
+        "Docker",
+        "AWS ECS",
+        "Terraform"
+      ]
+    },
+    "AegisOps": {
+      "repo": "AegisOps",
+      "title": "AegisOps \u2014 Autonomous AIOps Blast-Radius Engine & Self-Healing K8s Operator",
+      "live_demo_url": null,
+      "api_docs_url": null,
+      "line1": "Autonomous incident remediation control plane and Kubernetes operator that protects sensitive telemetry, maps microservice blast radius, and executes safe runbook automations.",
+      "line2": "Features Keycloak OIDC/TOTP human approval gates, hybrid pgvector runbook retrieval, and 65/65 passing CI tests with unbroken 60-second recovery health proofs.",
+      "stack": [
+        "Python 3.12",
+        "FastAPI",
+        "Kubernetes",
+        "PostgreSQL",
+        "pgvector",
+        "Keycloak",
+        "React",
+        "Docker"
+      ]
+    },
+    "PayGuard-AI-Agentic-Payment-Triage-RAG-Engine": {
+      "repo": "PayGuard-AI-Agentic-Payment-Triage-RAG-Engine",
+      "title": "PayGuard AI \u2014 Agentic Payment Dispute Triage & Regulatory RAG Engine",
+      "live_demo_url": null,
+      "api_docs_url": null,
+      "line1": "Autonomous multi-agent triage system that normalizes multi-rail payment payloads and resolves chargeback disputes against indexed regulatory protocols.",
+      "line2": "Backed by an independently audited 178/178 passing test suite across 20 modules in 93.93s, implementing pgvector semantic retrieval and strict multi-tenant isolation.",
+      "stack": [
+        "Python 3.14",
+        "FastAPI",
+        "PostgreSQL 16",
+        "pgvector",
+        "Next.js 15",
+        "React 19",
+        "SQLAlchemy"
+      ]
+    },
+    "Bastion-hybrid-rag": {
+      "repo": "Bastion-hybrid-rag",
+      "title": "Bastion \u2014 Zero-Leak Multi-Tenant Hybrid RAG Engine",
+      "live_demo_url": null,
+      "api_docs_url": null,
+      "line1": "Multi-tenant retrieval-augmented generation engine combining reciprocal rank fusion over PostgreSQL pgvector and full-text search with Redis 8 scoped semantic caching.",
+      "line2": "Enforces strict tenant isolation and passes an automated two-cohort Ragas evaluation suite comparing dense baselines against adversarial RBAC and refusal traps.",
+      "stack": [
+        "Python 3.12",
+        "FastAPI",
+        "PostgreSQL 17",
+        "pgvector",
+        "Redis 8",
+        "Next.js 16",
+        "Ragas"
+      ]
+    },
+    "ric0fc": {
+      "repo": "ric0fc",
+      "title": "RicozViz \u2014 Enterprise BI & Analytical Exploration Platform",
+      "live_demo_url": "https://ricozviz.vercel.app",
+      "api_docs_url": null,
+      "line1": "Dual-storage business intelligence platform combining DuckDB for sub-second analytical file queries with PostgreSQL for transactional metadata and server-side RBAC.",
+      "line2": "Verified with 42/42 security audit tests passed and clean 12/12 Playwright E2E page validations, featuring cryptographic 192-bit share tokens and live cloud deployment.",
+      "stack": [
+        "DuckDB",
+        "PostgreSQL",
+        "Next.js",
+        "Python",
+        "FastAPI",
+        "Playwright",
+        "Docker"
+      ]
+    },
+    "Glamgo": {
+      "repo": "Glamgo",
+      "title": "GlamGo \u2014 Beauty Retail Marketplace & Instant Booking Platform",
+      "live_demo_url": "https://glamgo-ricoz.vercel.app/",
+      "api_docs_url": "https://glamgo-backend-lqn6.onrender.com/docs",
+      "line1": "Unified full-stack e-commerce and salon booking platform with server-verified pricing, 10% coupon validation caps, and HTTP 409 double-booking concurrency guards.",
+      "line2": "Production-deployed with live Vercel storefront and Render API docs, protected by multi-vendor escrow workflows, Redis caching, and Playwright verification.",
+      "stack": [
+        "FastAPI",
+        "PostgreSQL 16",
+        "Redis 7",
+        "React",
+        "Razorpay",
+        "Playwright",
+        "Docker"
+      ]
+    },
+    "StockPulse-Multi-Tenant-Inventory-Order-Engine": {
+      "repo": "StockPulse-Multi-Tenant-Inventory-Order-Engine",
+      "title": "StockPulse \u2014 Multi-Tenant Inventory & POS Order Engine",
+      "live_demo_url": null,
+      "api_docs_url": null,
+      "line1": "High-concurrency B2B inventory management and POS transaction engine supporting tenant-isolated catalog schemas and multi-warehouse stock allocations.",
+      "line2": "Verified with automated CI build validation, Docker Compose deployment, Prisma database migrations, and WCAG 2.1 AA accessibility compliance.",
+      "stack": [
+        "TypeScript",
+        "Next.js 16",
+        "Express.js",
+        "PostgreSQL 16",
+        "Prisma",
+        "Docker Compose"
+      ]
+    },
+    "Real-Time-Commerce-and-Web-Application-Platform": {
+      "repo": "Real-Time-Commerce-and-Web-Application-Platform",
+      "title": "OrderFlow \u2014 Multi-Restaurant Commerce & Real-Time Fulfillment Engine",
+      "live_demo_url": null,
+      "api_docs_url": null,
+      "line1": "Multi-restaurant ordering and kitchen fulfillment platform utilizing WebSocket events for bidirectional real-time order status tracking and kitchen ticket management.",
+      "line2": "Backed by an automated GitHub Actions CI pipeline, Prisma ORM schema migrations on PostgreSQL 15, and Vitest test execution.",
+      "stack": [
+        "TypeScript",
+        "Node.js",
+        "React 19",
+        "Socket.io",
+        "Prisma",
+        "PostgreSQL 15",
+        "Docker"
+      ]
+    },
+    "Medicine-Link": {
+      "repo": "Medicine-Link",
+      "title": "MedicineLink \u2014 Surplus Medicine Redistribution Platform",
+      "live_demo_url": null,
+      "api_docs_url": null,
+      "line1": "Academic healthcare redistribution platform engineered to track synthetic surplus pharmaceutical inventory and coordinate multi-role donation requests.",
+      "line2": "Built with full-stack TypeScript, verified with passing Vitest suites, and structured around lightweight SQLite persistence and Express REST endpoints.",
+      "stack": [
+        "TypeScript",
+        "React 18",
+        "Node.js",
+        "Express",
+        "SQLite",
+        "Vitest",
+        "TailwindCSS"
+      ]
+    }
+  }
+}
