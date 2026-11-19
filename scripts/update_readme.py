@@ -186,9 +186,9 @@ def collect_markdown_context(repo_dir: Path, tracked: list[str]) -> tuple[str, l
 
     chunks: list[str] = []
     urls: list[str] = []
-    budget = 14000
+    budget = 2400
     used = 0
-    for rel in md_files[:8]:
+    for rel in md_files[:6]:
         fp = repo_dir / rel
         if not fp.is_file():
             continue
@@ -202,9 +202,12 @@ def collect_markdown_context(repo_dir: Path, tracked: list[str]) -> tuple[str, l
                 urls.append(cleaned)
         if used >= budget:
             continue
-        snippet = text[: min(5500, budget - used)].strip()
+        # Strip HTML/SVG noise and collapse blank lines for compact LLM context
+        compact = re.sub(r"<[^>]+>", " ", text)
+        compact = re.sub(r"\n{3,}", "\n\n", compact).strip()
+        snippet = compact[: min(1400, budget - used)].strip()
         if snippet:
-            chunks.append(f"### FILE: {rel}\n{snippet}")
+            chunks.append(f"### {rel}\n{snippet}")
             used += len(snippet)
 
     return "\n\n".join(chunks), urls
@@ -404,28 +407,53 @@ def call_gemini(prompt: str) -> str:
 def call_github_models(prompt: str) -> str:
     if not GITHUB_TOKEN:
         raise RuntimeError("GITHUB_TOKEN missing for GitHub Models fallback")
-    resp = requests.post(
-        "https://models.github.ai/inference/chat/completions",
-        headers={
-            "Authorization": f"Bearer {GITHUB_TOKEN}",
-            "Content-Type": "application/json",
-        },
-        json={
-            "model": "openai/gpt-4o-mini",
-            "temperature": 0.2,
-            "response_format": {"type": "json_object"},
-            "messages": [
-                {
-                    "role": "system",
-                    "content": "You are a Staff Engineer writing crisp, strictly factual, recruiter-ready GitHub README project descriptions. Return valid JSON only.",
+
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "Authorization": f"Bearer {GITHUB_TOKEN}",
+        "X-GitHub-Api-Version": "2022-11-28",
+        "Content-Type": "application/json",
+    }
+    last_err: Exception | None = None
+    for model_name in ("openai/gpt-4.1-mini", "openai/gpt-4o-mini"):
+        try:
+            resp = requests.post(
+                "https://models.github.ai/inference/chat/completions",
+                headers=headers,
+                json={
+                    "model": model_name,
+                    "temperature": 0.2,
+                    "max_tokens": 3000,
+                    "messages": [
+                        {
+                            "role": "system",
+                            "content": (
+                                "You are a Staff Engineer writing crisp, strictly factual, "
+                                "recruiter-ready GitHub README project descriptions. Return valid JSON only."
+                            ),
+                        },
+                        {"role": "user", "content": prompt},
+                    ],
                 },
-                {"role": "user", "content": prompt},
-            ],
-        },
-        timeout=90,
-    )
-    resp.raise_for_status()
-    return resp.json()["choices"][0]["message"]["content"]
+                timeout=90,
+            )
+            body_preview = (resp.text or "")[:400].replace("\n", " ")
+            if resp.status_code >= 400:
+                raise RuntimeError(f"HTTP {resp.status_code}: {body_preview}")
+            if not resp.text or not resp.text.strip():
+                raise RuntimeError(
+                    f"Empty response body (HTTP {resp.status_code}, "
+                    f"content-type={resp.headers.get('content-type')})"
+                )
+            data = resp.json()
+            content = data["choices"][0]["message"]["content"]
+            if content:
+                print(f"[info] GitHub Models succeeded with {model_name}.")
+                return content
+        except Exception as exc:  # noqa: BLE001
+            last_err = exc
+            print(f"[warn] GitHub Models {model_name} failed: {exc}", file=sys.stderr)
+    raise RuntimeError(f"All GitHub Models fallbacks failed: {last_err}")
 
 
 def generate_ranked_projects(
