@@ -1,7 +1,7 @@
 {
   "shas": {
     "AegisOps": "93c636b32ecd90d94f9e1cb6741836429572cb0f",
-    "Bastion-hybrid-rag": "9313fdee80790e6f4684efe4bc10390fcd0d42ef",
+    "Bastion-hybrid-rag": "45231b8721a35c42ba9dd940b7a47915191267f3",
     "Glamgo": "54ba3db64fcb87f6c45ad2b3b848357cc91fbb83",
     "Medicine-Link": "080d9a04aa7aeba952f74cf23f8cf24db2004c1f",
     "PayGuard-AI-Agentic-Payment-Triage-RAG-Engine": "ed4eef4e920fa400f0c84e3e80c800a615ab0631",
@@ -86,8 +86,8 @@
       "title": "Bastion \u2014 Zero-Leak Multi-Tenant Hybrid RAG Engine",
       "live_demo_url": null,
       "api_docs_url": null,
-      "line1": "Multi-tenant retrieval-augmented generation engine combining reciprocal rank fusion over PostgreSQL pgvector and full-text search with Redis 8 scoped semantic caching.",
-      "line2": "Enforces strict tenant isolation and passes an automated two-cohort Ragas evaluation suite comparing dense baselines against adversarial RBAC and refusal traps.",
+      "line1": "Multi-tenant retrieval-augmented generation engine combining reciprocal rank fusion over PostgreSQL 17 pgvector and full-text search with Redis 8 scoped semantic caching.",
+      "line2": "Enforces strict tenant isolation with a verified two-cohort Ragas evaluation harness comparing dense baselines against 14 adversarial RBAC and refusal traps.",
       "stack": [
         "Python 3.12",
         "FastAPI",
@@ -95,7 +95,8 @@
         "pgvector",
         "Redis 8",
         "Next.js 16",
-        "Ragas"
+        "Ragas",
+        "Docker"
       ]
     },
     "ric0fc": {
