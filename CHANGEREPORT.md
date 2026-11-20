@@ -1,5 +1,21 @@
 # Change Report (`CHANGEREPORT.md`)
 
+## 2026-11-21 02:43 IST — Full `github-profile-update` Pass (`README.md`)
+
+### Objective
+Execute the full `github-profile-update` workflow for `https://github.com/shatwiks/shatwiks` (timestamp `2026-11-21 02:36 IST`): scan all repositories under `shatwiks`, sync all non-empty project repositories into the conversation scratch directory (`git -c core.longpaths=true`), read their Markdown docs, re-measure real code and manifest usage for `Top Skills`, and update only `## 📊 Top Skills` and `## 🚀 Featured Projects` in `README.md` while keeping all other sections intact.
+
+### Files Modified
+- **[README.md](README.md)** *(modified)* — Updated only `## 📊 Top Skills (measured from my repos)` (restoring accurate non-vendored measurements across all 10 public project repos totaling `161,004` non-blank code lines, correcting `K8s · 1` and excluding vendored `.github/skills/` and `frontend/public/assets/` runtime kits counted by the nightly `374d887` pass) and `## 🚀 Featured Projects` (ranking all 10 built projects by engineering depth and recruiter impact with verified metrics, test counts, live demo/API URLs, and accurate stacks—including fixing `GlamGo`'s frontend stack to `Vite` rather than `React` and updating `PayGuard AI`'s latest `PROJECT_METRICS.md` test count of `207` across `20` modules).
+- **[CHANGEREPORT.md](CHANGEREPORT.md)** *(modified)* — Prepended this dated summary entry per the standing change-report workflow.
+
+### Verification Commands & Results
+- **Repository Discovery & Sync:** Queried `https://api.github.com/users/shatwiks/repos?per_page=100&sort=pushed` (`11` public repos returned; `gh` CLI not installed) and cloned all `11` repos cleanly into scratch using `git -c core.longpaths=true`.
+- **Delta & Metrics Verification:** Verified `PayGuard-AI-Agentic-Payment-Triage-RAG-Engine` had 4 new `[skip ci]` metrics-refresh commits (`d7eeb13`..`ec14f4a`) since `projects-state.json` (`ed4eef4`), with `docs/PROJECT_METRICS.md` reporting `27,810` non-blank source lines and `207` test cases across `20` modules; verified all `10` project repos' Markdown docs and manifests totaling `161,004` non-blank project lines (`Python` `79,227` / `49.2%`, `TypeScript` `68,298` / `42.4%`, `JavaScript` `6,365` / `4.0%`, `CSS` `4,529` / `2.8%`, `C++20` `1,322` / `0.8%`, `SQL` `1,187` / `0.7%`).
+- **Git Diff & Push Verification:** Verified `git diff` on `README.md` touches only `Top Skills` and `Featured Projects`, then executed `git pull --rebase origin main` and `git push origin main` with `GIT_TERMINAL_PROMPT=0` and `GCM_INTERACTIVE=never`.
+
+---
+
 ## 2026-11-20 02:06 IST — Refresh Top Skills & Featured Projects (`github-profile-update`)
 
 ### Objective
