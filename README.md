@@ -21,13 +21,13 @@
 
 ## ⚡ About Me
 
-B.Tech student in **Computer Science and Engineering at Manipal Institute of Technology (MIT) Bengaluru** (2024 to 2028).
-I build systems that stay correct under load: atomic inventory gates, real-time sync, streaming ingestion, and retrieval pipelines that are measured rather than guessed.
+Computer Science & Engineering undergraduate at **Manipal Institute of Technology (MIT) Bengaluru** *(Class of 2028)* building **production-grade backend services, distributed systems, full-stack applications, and evaluated AI/ML pipelines**.
 
-- 🏆 **Tech Solstice 48-Hour National Hackathon** finalist, Top 5 of 120+ teams
-- ⚙️ Focus: scalable distributed web architectures (Node.js, TypeScript, PostgreSQL, Redis) plus production AI/ML systems (Advanced RAG, model serving, agent workflows)
-- 🚀 Building **PolyPulse**, a C++20 + ClickHouse prediction-market orderbook and markout pipeline
-- 🎯 Preparing for entry-level SDE and Full-Stack AI/ML roles
+- 🛠️ **End-to-End Engineering:** Shipped **10 full-stack & systems projects** (`161k+` lines across Python, TypeScript, and C++20) with containerized deployments, automated test suites, and GitHub Actions CI/CD.
+- ⚡ **Systems Under Load:** Experience designing concurrency-safe APIs (`10,000+ RPS`, `0.00%` overbooking), multi-tenant data isolation, real-time streaming, and cloud-native infrastructure (`PostgreSQL`, `Redis`, `Docker`, `Kubernetes`, `Terraform`).
+- 🧠 **Measured Applied AI:** Built RAG and agentic workflows backed by quantitative evaluation harnesses, strict schema validation, and zero-trust security guardrails rather than unverified prompt wrappers.
+- 🏆 **Proven Execution:** National Finalist (**Top 5 of 120+ teams**) at the Tech Solstice 48-Hour Hackathon and **200+ DSA & SQL** problems solved.
+- 🎯 **Open To:** Software Engineering (**SWE / Backend / Full-Stack / Applied AI**) internships and entry-level roles.
 
 ---
 

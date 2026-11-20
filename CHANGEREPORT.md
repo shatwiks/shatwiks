@@ -1,5 +1,20 @@
 # Change Report (`CHANGEREPORT.md`)
 
+## 2026-11-21 02:51 IST — Recruiter-Focused Rewrite of `About Me` (`README.md`)
+
+### Objective
+Rewrite the `## ⚡ About Me` section of `shatwiks/README.md` from a senior technical recruiter perspective so it is broad, scannable, and high-impact across SWE, Backend, Full-Stack, Distributed Systems, and Applied AI roles (`2026-11-21 02:50 IST`).
+
+### Files Modified
+- **[README.md](README.md)** *(modified)* — Rewrote `## ⚡ About Me` with a concise engineering value proposition, quantified delivery highlights (`10` shipped projects / `161k+` LOC, `10,000+ RPS` / `0.00%` overbooking systems, measured RAG/agentic AI, Tech Solstice Top 5 of `120+` teams, `200+` DSA & SQL problems), and clear internship / entry-level role availability while leaving all other sections untouched.
+- **[CHANGEREPORT.md](CHANGEREPORT.md)** *(modified)* — Prepended this change summary entry.
+
+### Verification Commands & Results
+- **Git Diff Check:** Verified `git diff -- README.md` modifies only `## ⚡ About Me`.
+- **Rebase & Push:** Executed `git pull --rebase origin main` and `git push origin main` with `GIT_TERMINAL_PROMPT=0` and `GCM_INTERACTIVE=never`.
+
+---
+
 ## 2026-11-21 02:43 IST — Full `github-profile-update` Pass (`README.md`)
 
 ### Objective
