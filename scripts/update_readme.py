@@ -34,14 +34,26 @@ STATE_PATH = REPO_ROOT / "profile" / "projects-state.json"
 EXCLUDE_PREFIXES = (
     ".agents/",
     ".codex/",
+    ".github/skills/",
     ".impeccable/",
     ".taste-skill/",
     "graphify-out/",
     ".planning/",
     "node_modules/",
+    "frontend/public/assets/",
+    "public/assets/",
+    ".next/",
+    "playwright-report/",
+    "coverage/",
 )
 EXCLUDE_SUBSTRINGS = (
     "/node_modules/",
+    "/.github/skills/",
+    "/frontend/public/assets/",
+    "/public/assets/",
+    "/.next/",
+    "/playwright-report/",
+    "/coverage/",
     "package-lock.json",
     "/dist/",
     "/build/",
@@ -143,7 +155,7 @@ def is_excluded(rel_path: str) -> bool:
 
 
 def shallow_clone(clone_url: str, dest: Path) -> bool:
-    cmd = ["git", "clone", "--depth=1", "--quiet", clone_url, str(dest)]
+    cmd = ["git", "-c", "core.longpaths=true", "clone", "--depth=1", "--quiet", clone_url, str(dest)]
     res = subprocess.run(cmd, capture_output=True, text=True)
     return res.returncode == 0
 
@@ -287,7 +299,9 @@ def measure_top_skills(repo_dirs: dict[str, Path]) -> dict[str, Any]:
             infra_counts["GitHub Actions CI"] += 1
         if any(f.endswith(".tf") for f in tracked):
             infra_counts["Terraform"] += 1
-        if any(re.search(r"(^|/)k8s/|kind|kubernetes", f, re.IGNORECASE) for f in tracked):
+        if any(re.search(r"(^|/)(k8s|kubernetes)(/|$)", f, re.IGNORECASE) for f in tracked) or re.search(
+            r"kubernetes", manifest_text, re.IGNORECASE
+        ):
             infra_counts["Kubernetes"] += 1
 
         cfg_files = [
@@ -473,6 +487,22 @@ def generate_ranked_projects(
         if rname not in expected or rname in seen:
             continue
         seen.add(rname)
+
+        existing = prev_state.get("entries", {}).get(rname)
+        if repo_contexts[rname]["status"] == "unchanged" and isinstance(existing, dict) and existing.get("line1"):
+            cleaned.append(
+                {
+                    "repo": rname,
+                    "title": str(existing.get("title") or rname).strip(),
+                    "live_demo_url": existing.get("live_demo_url"),
+                    "api_docs_url": existing.get("api_docs_url"),
+                    "line1": str(existing.get("line1") or "").strip(),
+                    "line2": str(existing.get("line2") or "").strip(),
+                    "stack": [str(s).strip() for s in (existing.get("stack") or []) if str(s).strip()][:10],
+                }
+            )
+            continue
+
         allowed_urls = set(repo_contexts[rname]["urls"])
         demo = item.get("live_demo_url")
         if demo not in allowed_urls or "localhost" in (demo or "") or "github.com" in (demo or ""):
@@ -489,7 +519,7 @@ def generate_ranked_projects(
                 "api_docs_url": api_docs,
                 "line1": (item.get("line1") or "").strip(),
                 "line2": (item.get("line2") or "").strip(),
-                "stack": [str(s).strip() for s in (item.get("stack") or []) if str(s).strip()][:9],
+                "stack": [str(s).strip() for s in (item.get("stack") or []) if str(s).strip()][:10],
             }
         )
 
@@ -503,7 +533,7 @@ def generate_ranked_projects(
 def render_featured_projects(projects: list[dict[str, Any]]) -> str:
     blocks = [
         "## 🚀 Featured Projects\n",
-        f"*All {len(projects)} projects built across distributed systems, applied AI, cloud-native infrastructure, and full-stack engineering — ranked by systems depth and recruiter impact.*\n",
+        f"*All {len(projects)} built projects across distributed systems, applied AI, cloud-native infrastructure, and full-stack engineering — ranked by systems depth and recruiter impact.*\n",
     ]
     for idx, p in enumerate(projects, start=1):
         repo_url = f"https://github.com/{OWNER}/{p['repo']}"

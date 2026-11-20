@@ -1,5 +1,23 @@
 # Change Report (`CHANGEREPORT.md`)
 
+## 2026-11-21 02:59 IST — Harden Nightly Updater, Align Tech Stack & Sync `projects-state.json`
+
+### Objective
+Apply recruiter-focused improvements #1, #2, and #4 (`2026-11-21 02:55 IST`): protect `README.md` from nightly `update_readme.py` regressions, align `## 🛠️ Tech Stack` badges and domain table with the actual codebase, and sync `profile/projects-state.json` with the upgraded `PayGuard AI` repository (`a3e4dfe`).
+
+### Files Modified
+- **[scripts/update_readme.py](scripts/update_readme.py)** *(modified)* — Added `.github/skills/`, `frontend/public/assets/`, `public/assets/`, `.next/`, `playwright-report/`, and `coverage/` to exclusions; narrowed Kubernetes detection regex to `(^|/)(k8s|kubernetes)(/|$)` or `kubernetes` in manifests so `K8s` counts `1` (`AegisOps`) rather than `2`; added `-c core.longpaths=true` to `shallow_clone`; updated `generate_ranked_projects` to preserve `unchanged` `existing_entry` blocks verbatim; aligned `render_featured_projects` subtitle (`All {N} built projects...`).
+- **[README.md](README.md)** *(modified)* — Aligned `## 🛠️ Tech Stack` icons, shields, and Domain table with actual project tooling (`Vite`, `SQLite`, `Three.js`, `Kubernetes`, `Terraform`, `DuckDB`, `pgvector`, `Ollama`, `Ragas`, `Playwright`, `Vitest`, `Keycloak`), replacing unbacked badges/entries (`MySQL`, `MongoDB`, `Redux`, `vLLM`, `Pinecone`, `Cohere Rerank`, `DeepEval`, `Jest`); corrected `PayGuard AI` stack tag from `Next.js 15` to `Next.js 16`.
+- **[profile/projects-state.json](profile/projects-state.json)** *(modified)* — Synced all 10 curated `entries` and updated `PayGuard-AI-Agentic-Payment-Triage-RAG-Engine` SHA to `a3e4dfee8b4a0a859592e40451f6a9984304ed0e`.
+- **[CHANGEREPORT.md](CHANGEREPORT.md)** *(modified)* — Prepended this dated summary entry.
+
+### Verification Commands & Results
+- **`update_readme.py` Measurement Check:** Verified `measure_top_skills()` + `render_top_skills()` locally against all 10 project repos (`161k+` lines; `Python 49.2%`, `TypeScript 42.4%`, `JavaScript 4.0%`, `CSS 2.8%`, `C++20 0.8%`, `SQL 0.7%`, `Terraform · 2 (+ K8s · 1)`).
+- **`skillicons.dev` Verification:** Confirmed HTTP `200` valid `<svg>` responses for all three updated icon rows.
+- **Git Rebase & Push:** Verified `py_compile`, staged `README.md`, `scripts/update_readme.py`, `profile/projects-state.json`, and `CHANGEREPORT.md`, rebased onto `origin/main`, and pushed cleanly with `GIT_TERMINAL_PROMPT=0` and `GCM_INTERACTIVE=never`.
+
+---
+
 ## 2026-11-21 02:51 IST — Recruiter-Focused Rewrite of `About Me` (`README.md`)
 
 ### Objective

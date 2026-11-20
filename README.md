@@ -37,37 +37,39 @@ Computer Science & Engineering undergraduate at **Manipal Institute of Technolog
 
 **Languages & Frontend**
 
-<img src="https://skillicons.dev/icons?i=py,ts,js,cpp,c,react,nextjs,tailwind,redux&perline=9" alt="Languages and frontend" />
+<img src="https://skillicons.dev/icons?i=py,ts,js,cpp,c,react,nextjs,tailwind,vite&perline=9" alt="Languages and frontend" />
 
 **Backend & Databases**
 
-<img src="https://skillicons.dev/icons?i=nodejs,express,fastapi,postgres,mysql,mongodb,redis,prisma&perline=8" alt="Backend and databases" />
+<img src="https://skillicons.dev/icons?i=nodejs,express,fastapi,postgres,sqlite,redis,prisma,threejs&perline=8" alt="Backend and databases" />
 
 **Cloud, DevOps & AI**
 
-<img src="https://skillicons.dev/icons?i=docker,aws,githubactions,linux,nginx,git,vercel,pytorch&perline=8" alt="Cloud DevOps and AI" />
+<img src="https://skillicons.dev/icons?i=docker,kubernetes,terraform,aws,githubactions,linux,nginx,vercel,pytorch&perline=9" alt="Cloud DevOps and AI" />
 
 <br/>
 
 <img src="https://img.shields.io/badge/ClickHouse-FFCC01?style=for-the-badge&logo=clickhouse&logoColor=black" alt="ClickHouse" />
+<img src="https://img.shields.io/badge/DuckDB-FFF000?style=for-the-badge&logo=duckdb&logoColor=black" alt="DuckDB" />
+<img src="https://img.shields.io/badge/pgvector-336791?style=for-the-badge&logo=postgresql&logoColor=white" alt="pgvector" />
+<img src="https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white" alt="Ollama" />
 <img src="https://img.shields.io/badge/Hugging_Face-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" alt="Hugging Face" />
-<img src="https://img.shields.io/badge/LangGraph-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white" alt="LangGraph" />
-<img src="https://img.shields.io/badge/vLLM-7C3AED?style=for-the-badge" alt="vLLM" />
-<img src="https://img.shields.io/badge/Pinecone-000000?style=for-the-badge" alt="Pinecone" />
+<img src="https://img.shields.io/badge/Ragas-6366F1?style=for-the-badge" alt="Ragas" />
+<img src="https://img.shields.io/badge/Playwright-2EAD33?style=for-the-badge&logo=playwright&logoColor=white" alt="Playwright" />
+<img src="https://img.shields.io/badge/Vitest-6E9F18?style=for-the-badge&logo=vitest&logoColor=white" alt="Vitest" />
 <img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=socketdotio&logoColor=white" alt="Socket.io" />
-<img src="https://img.shields.io/badge/WebRTC-333333?style=for-the-badge&logo=webrtc&logoColor=white" alt="WebRTC" />
-<img src="https://img.shields.io/badge/Pandas-150458?style=for-the-badge&logo=pandas&logoColor=white" alt="Pandas" />
-<img src="https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white" alt="scikit-learn" />
+<img src="https://img.shields.io/badge/Keycloak-4D4D4D?style=for-the-badge&logo=keycloak&logoColor=white" alt="Keycloak" />
 <img src="https://img.shields.io/badge/k6-7D64FF?style=for-the-badge&logo=k6&logoColor=white" alt="k6" />
+<img src="https://img.shields.io/badge/WebRTC-333333?style=for-the-badge&logo=webrtc&logoColor=white" alt="WebRTC" />
 
 </div>
 
 | Domain | Details |
 | :--- | :--- |
-| **Distributed Systems** | Redis (Lua scripting, Redlock, Pub/Sub, semantic caching), Saga pattern, idempotency keys, TOCTOU race-condition elimination, eventual consistency, microservices |
-| **Data Pipelines & Streaming** | WebSocket ingestion, deduplication and replay recovery, dead-letter handling, ClickHouse materialized views and ASOF joins, SSE |
-| **AI & ML** | RAG, agentic AI, prompt engineering, dense embeddings, Cohere Rerank, Ragas, DeepEval |
-| **Testing & Practices** | PyTest, Jest, k6 load testing, observability, Agile (Scrum, Kanban), conventional commits |
+| **Distributed Systems** | Redis (Lua scripting, Redlock, semantic caching), Saga pattern, idempotency keys, pessimistic row locks (`FOR UPDATE`), TOCTOU race-condition elimination, multi-tenant RBAC & isolation |
+| **Data Pipelines & Streaming** | WebSocket ingestion, deduplication & replay recovery, SQLite WAL journaling, ClickHouse materialized views & `ASOF` joins, DuckDB analytics, SSE |
+| **AI & ML** | Hybrid RAG (`pgvector` HNSW + FTS + Reciprocal Rank Fusion), Cross-Encoder reranking, Ragas evaluation, deterministic refusal gates, local Ollama inference, structured Pydantic/Zod outputs |
+| **Testing & Practices** | Pytest, Vitest, Playwright E2E, k6 load testing, Ruff/Mypy/TSC static gates, OpenTelemetry & Langfuse observability, conventional commits |
 | **AI-Assisted Development** | GitHub Copilot, Claude Code, Cline, Aider |
 
 ---
@@ -127,7 +129,7 @@ Benchmarked at **100.0% retrieval precision** and **1.0000 MRR** (+32.59% lift) 
 ### 5. [PayGuard AI — Agentic Payment Dispute Triage & Regulatory RAG Engine](https://github.com/shatwiks/PayGuard-AI-Agentic-Payment-Triage-RAG-Engine)
 Autonomous payment triage platform (`27.8k+` non-blank LOC, 18 API routes, 6 Alembic migrations) combining a strictly read-only 5-tool `ToolRegistry`, gateway-timeout non-mutation semantics, and prompt-injection defense with hybrid `pgvector` + FTS RAG over Visa/Mastercard/NACHA rules.
 Includes **207 test cases** across 20 modules (**181/181** independently audited pass), **40/40 (100%)** Ollama RAG evaluation (`100%` Recall@5, `1.0000` MRR, `100%` tenant isolation), **8/8** Playwright E2E tests, Docker staging `pg_dump`/`pg_restore` verification, and CI.
-**Stack:** `Python 3.14` · `FastAPI` · `PostgreSQL 16` · `pgvector` · `Next.js 15` · `React 19` · `SQLAlchemy` · `Playwright` · `Docker`
+**Stack:** `Python 3.14` · `FastAPI` · `PostgreSQL 16` · `pgvector` · `Next.js 16` · `React 19` · `SQLAlchemy` · `Playwright` · `Docker`
 
 ### 6. [GlamGo — Beauty Retail Marketplace & Instant Booking Platform](https://github.com/shatwiks/Glamgo) • [Live Demo](https://glamgo-ricoz.vercel.app/) • [API Docs](https://glamgo-backend-lqn6.onrender.com/docs)
 Production-deployed multi-vendor commerce and salon/at-home booking platform with integer-paise largest-remainder order splitting, row-locked `SellerListing` stock reservations, Razorpay HMAC-SHA256 webhook reconciliation, T+7 seller escrow, HTTP 409 double-booking guards, and immutable DB audit triggers.
