@@ -7,7 +7,7 @@
     "PayGuard-AI-Agentic-Payment-Triage-RAG-Engine": "a3e4dfee8b4a0a859592e40451f6a9984304ed0e",
     "Real-Time-Commerce-and-Web-Application-Platform": "0379779616cc142fa4d1e274ad7d409af2c0fff6",
     "StockPulse-Multi-Tenant-Inventory-Order-Engine": "a80d75d827d51a949f81a66de366b8ec167025e3",
-    "distributed-flash-sale-engine": "84ebcf678713b63032a6acd573a004777a681e05",
+    "distributed-flash-sale-engine": "eda6c9a70a394dbed0e40046a1f06a97d2d2322c",
     "polypulse": "2fec282bece2eb6e8fd8b820babe2d93271469ea",
     "ric0fc": "01acafcd6b38946220d4a763dd0311a80c19a4cc"
   },
@@ -53,10 +53,10 @@
     "distributed-flash-sale-engine": {
       "repo": "distributed-flash-sale-engine",
       "title": "Distributed Flash-Sale Engine \u2014 High-Throughput Ticket Booking Architecture",
-      "live_demo_url": null,
+      "live_demo_url": "https://ticket-booking-api-jvic.onrender.com/health",
       "api_docs_url": null,
-      "line1": "High-concurrency ticketing engine eliminating TOCTOU race conditions and overselling via $O(1)$ Redis Lua atomic reservation gates, Redlock distributed locks, two-phase compensating `INCRBY` saga rollbacks, and AWS ECS Fargate + Terraform IaC.",
-      "line2": "Sustains **10,000+ RPS** burst traffic with **0.00% overbooking**, **18.5 ms** p95 latency (93.2% lower than 271 ms `SELECT ... FOR UPDATE`), and **0.00% HTTP 500** errors versus 18.4% relational pool exhaustion, paired with a Next.js 16 concurrency duel UI.",
+      "line1": "High-concurrency ticketing engine eliminating TOCTOU race conditions and overselling via O(1) Redis Lua atomic reservation gates, Redlock distributed locks, two-phase compensating `INCRBY` saga rollbacks, and AWS ECS Fargate + Terraform IaC.",
+      "line2": "Sustains **10,000+ RPS** burst traffic with **0.00% overbooking**, **18.5 ms** p95 latency (93.2% lower than 271 ms `SELECT ... FOR UPDATE`), **0.00% HTTP 500** errors versus 18.4% relational pool exhaustion, and a live Render cloud health API.",
       "stack": [
         "Node.js 20",
         "Express",
@@ -67,25 +67,6 @@
         "AWS ECS",
         "Terraform",
         "k6"
-      ]
-    },
-    "Bastion-hybrid-rag": {
-      "repo": "Bastion-hybrid-rag",
-      "title": "Bastion \u2014 Zero-Leak Multi-Tenant Hybrid RAG Engine",
-      "live_demo_url": null,
-      "api_docs_url": null,
-      "line1": "Multi-tenant RAG platform executing pre-retrieval JWT `tenant_id` + `allowed_roles` SQL CTE filtering before `pgvector` HNSW + dual-FTS (`simple`/`english`) Reciprocal Rank Fusion, a `< 0.65` Cross-Encoder refusal gate (`0` LLM tokens on traps), and Redis 8 scoped semantic caching.",
-      "line2": "Benchmarked at **100.0% retrieval precision** and **1.0000 MRR** (+32.59% lift) across 28 probes, **0.0% ungrounded answers** and **0/14** RBAC/tenant leaks on adversarial traps, Ragas v0.4 evaluation, and a Next.js 16 landing + live `/workspace` SSE inspector.",
-      "stack": [
-        "Python 3.12",
-        "FastAPI",
-        "PostgreSQL 17",
-        "pgvector",
-        "Redis 8",
-        "Next.js 16",
-        "React 19",
-        "Ragas",
-        "Docker"
       ]
     },
     "PayGuard-AI-Agentic-Payment-Triage-RAG-Engine": {
@@ -107,6 +88,25 @@
         "Docker"
       ]
     },
+    "Bastion-hybrid-rag": {
+      "repo": "Bastion-hybrid-rag",
+      "title": "Bastion \u2014 Zero-Leak Multi-Tenant Hybrid RAG Engine",
+      "live_demo_url": null,
+      "api_docs_url": null,
+      "line1": "Multi-tenant RAG platform executing pre-retrieval JWT `tenant_id` + `allowed_roles` SQL CTE filtering before `pgvector` HNSW + dual-FTS (`simple`/`english`) Reciprocal Rank Fusion, a `< 0.65` Cross-Encoder refusal gate (`0` LLM tokens on traps), and Redis 8 scoped semantic caching.",
+      "line2": "Benchmarked at **100.0% retrieval precision** and **1.0000 MRR** (+32.59% lift) across 28 probes, **0.0% ungrounded answers** and **0/14** RBAC/tenant leaks on adversarial traps, Ragas v0.4 evaluation, and a Next.js 16 landing + live `/workspace` SSE inspector.",
+      "stack": [
+        "Python 3.12",
+        "FastAPI",
+        "PostgreSQL 17",
+        "pgvector",
+        "Redis 8",
+        "Next.js 16",
+        "React 19",
+        "Ragas",
+        "Docker"
+      ]
+    },
     "Glamgo": {
       "repo": "Glamgo",
       "title": "GlamGo \u2014 Beauty Retail Marketplace & Instant Booking Platform",
@@ -121,25 +121,6 @@
         "Redis 7",
         "Vite",
         "Razorpay",
-        "Playwright",
-        "Docker"
-      ]
-    },
-    "ric0fc": {
-      "repo": "ric0fc",
-      "title": "RicozViz \u2014 Enterprise BI & Analytical Exploration Platform",
-      "live_demo_url": "https://ricozviz.vercel.app",
-      "api_docs_url": null,
-      "line1": "Dual-storage SaaS BI platform pairing DuckDB for sub-second analytical file queries with PostgreSQL for multi-tenant transactional metadata, strict server-side RBAC, schema-allowlisted query generation, and 192-bit cryptographic dashboard share tokens.",
-      "line2": "Verified with **42/42** security audit tests, **13/13** static architectural checks, **10/10** Playwright security tests, **12/12** E2E pages with zero console/network errors, and live Vercel + Render/Supabase deployment configuration.",
-      "stack": [
-        "DuckDB",
-        "PostgreSQL",
-        "FastAPI",
-        "Python",
-        "Next.js",
-        "TypeScript",
-        "Three.js",
         "Playwright",
         "Docker"
       ]
@@ -160,6 +141,25 @@
         "Prisma",
         "Three.js",
         "Docker Compose"
+      ]
+    },
+    "ric0fc": {
+      "repo": "ric0fc",
+      "title": "RicozViz \u2014 Enterprise BI & Analytical Exploration Platform",
+      "live_demo_url": "https://ricozviz.vercel.app",
+      "api_docs_url": null,
+      "line1": "Dual-storage SaaS BI platform pairing DuckDB for sub-second analytical file queries with PostgreSQL for multi-tenant transactional metadata, strict server-side RBAC, schema-allowlisted query generation, and 192-bit cryptographic dashboard share tokens.",
+      "line2": "Verified with **42/42** security audit tests, **13/13** static architectural checks, **10/10** Playwright security tests, **12/12** E2E pages with zero console/network errors, and live Vercel + Render/Supabase deployment configuration.",
+      "stack": [
+        "DuckDB",
+        "PostgreSQL",
+        "FastAPI",
+        "Python",
+        "Next.js",
+        "TypeScript",
+        "Three.js",
+        "Playwright",
+        "Docker"
       ]
     },
     "Real-Time-Commerce-and-Web-Application-Platform": {
