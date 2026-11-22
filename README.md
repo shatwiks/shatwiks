@@ -76,15 +76,15 @@ Computer Science & Engineering undergraduate at **Manipal Institute of Technolog
 
 ## 📊 Top Skills (measured from my repos)
 
-*Measured by non-blank lines of code and how many repos use each tool, across 10 public repositories (161k+ lines).*
+*Measured by non-blank lines of code and how many repos use each tool, across 10 public repositories (162k+ lines).*
 
 **Languages**
 
 ```text
-Python      ████████████████████░░░░░░░░░░░░░░░░░░░░  49.2%  · 79.2k lines · 6 repos
-TypeScript  █████████████████░░░░░░░░░░░░░░░░░░░░░░░  42.4%  · 68.4k lines · 9 repos
+Python      ████████████████████░░░░░░░░░░░░░░░░░░░░  48.8%  · 79.2k lines · 6 repos
+TypeScript  █████████████████░░░░░░░░░░░░░░░░░░░░░░░  42.6%  · 69.1k lines · 9 repos
 JavaScript  ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   3.9%  ·  6.4k lines · 6 repos
-CSS         █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   2.8%  ·  4.6k lines · 10 repos
+CSS         █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   3.1%  ·  5.0k lines · 10 repos
 C++20       █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0.8%  ·  1.3k lines · 1 repo
 SQL         █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   0.7%  ·  1.2k lines · 8 repos
 ```
@@ -108,8 +108,8 @@ SQL         █░░░░░░░░░░░░░░░░░░░░░�
 
 ### 1. [AegisOps — Autonomous AIOps & Self-Healing Kubernetes Control Plane](https://github.com/shatwiks/AegisOps)
 Locally runnable AIOps control plane and Kubernetes operator that scrubs PII fail-closed (`1.00` precision/recall), maps CMDB blast radius, retrieves runbooks via `pgvector` + Ollama hybrid RAG, and enforces Keycloak OIDC + TOTP MFA approval or deterministic refusal before proving 60s of unbroken recovery.
-Verified with **65/65** pytest tests (unit, live K8s/DB integration, Playwright E2E), **240/240** `k6` burst checks (`0.00%` failed), **4/4** live `kind` chaos recoveries + stateful DB refusal, Ruff/Mypy clean across 50 Python modules, and GitHub Actions CI.
-**Stack:** `Python 3.12` · `FastAPI` · `Kubernetes (kind)` · `Terraform` · `PostgreSQL 16` · `pgvector` · `Redis` · `Keycloak` · `Ollama` · `React 18`
+Verified with **65/65** pytest tests (unit, live K8s/DB integration, Playwright E2E), **240/240** `k6` burst checks (`0.00%` failed), **4/4** live `kind` chaos recoveries + stateful DB refusal, Ruff/Mypy clean across 50 Python modules, WCAG 2.1 AA `tsc`/Vite React console, and GitHub Actions CI.
+**Stack:** `Python 3.12` · `FastAPI` · `Kubernetes (kind)` · `Terraform` · `PostgreSQL 16` · `pgvector` · `Redis` · `Keycloak` · `Ollama` · `React 18` · `TypeScript`
 
 ### 2. [PolyPulse — Cross-Venue Prediction-Market Orderbook & Markout Pipeline](https://github.com/shatwiks/polypulse)
 Fixed-point C++20 orderbook engine (`std::vector<PriceLevel>`, zero steady-state heap allocations) paired with Python AsyncIO Polymarket/Kalshi/Polygon ingestion, SQLite WAL journaling, ClickHouse `LEFT ASOF JOIN` 5s/30s/60s markout, and official fee-schedule arbitrage scanning.

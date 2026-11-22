@@ -1,13 +1,13 @@
 {
   "shas": {
-    "AegisOps": "93c636b32ecd90d94f9e1cb6741836429572cb0f",
+    "AegisOps": "c186cbc22c9afa1bc0e3bf6c9af304d813d3ab77",
     "Bastion-hybrid-rag": "45231b8721a35c42ba9dd940b7a47915191267f3",
     "Glamgo": "54ba3db64fcb87f6c45ad2b3b848357cc91fbb83",
     "Medicine-Link": "080d9a04aa7aeba952f74cf23f8cf24db2004c1f",
     "PayGuard-AI-Agentic-Payment-Triage-RAG-Engine": "a3e4dfee8b4a0a859592e40451f6a9984304ed0e",
     "Real-Time-Commerce-and-Web-Application-Platform": "0379779616cc142fa4d1e274ad7d409af2c0fff6",
     "StockPulse-Multi-Tenant-Inventory-Order-Engine": "a80d75d827d51a949f81a66de366b8ec167025e3",
-    "distributed-flash-sale-engine": "eda6c9a70a394dbed0e40046a1f06a97d2d2322c",
+    "distributed-flash-sale-engine": "8da7ba5415b2ba79c55b5d83130493ce54d4ef23",
     "polypulse": "2fec282bece2eb6e8fd8b820babe2d93271469ea",
     "ric0fc": "01acafcd6b38946220d4a763dd0311a80c19a4cc"
   },
@@ -18,7 +18,7 @@
       "live_demo_url": null,
       "api_docs_url": null,
       "line1": "Locally runnable AIOps control plane and Kubernetes operator that scrubs PII fail-closed (`1.00` precision/recall), maps CMDB blast radius, retrieves runbooks via `pgvector` + Ollama hybrid RAG, and enforces Keycloak OIDC + TOTP MFA approval or deterministic refusal before proving 60s of unbroken recovery.",
-      "line2": "Verified with **65/65** pytest tests (unit, live K8s/DB integration, Playwright E2E), **240/240** `k6` burst checks (`0.00%` failed), **4/4** live `kind` chaos recoveries + stateful DB refusal, Ruff/Mypy clean across 50 Python modules, and GitHub Actions CI.",
+      "line2": "Verified with **65/65** pytest tests (unit, live K8s/DB integration, Playwright E2E), **240/240** `k6` burst checks (`0.00%` failed), **4/4** live `kind` chaos recoveries + stateful DB refusal, Ruff/Mypy clean across 50 Python modules, WCAG 2.1 AA `tsc`/Vite React console, and GitHub Actions CI.",
       "stack": [
         "Python 3.12",
         "FastAPI",
@@ -29,7 +29,8 @@
         "Redis",
         "Keycloak",
         "Ollama",
-        "React 18"
+        "React 18",
+        "TypeScript"
       ]
     },
     "polypulse": {

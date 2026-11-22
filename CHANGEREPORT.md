@@ -1,5 +1,22 @@
 # Change Report (`CHANGEREPORT.md`)
 
+## 2026-11-22 05:57 IST — Full `github-profile-update` Pass (`README.md`)
+
+### Objective
+Execute the full `github-profile-update` workflow for `https://github.com/shatwiks/shatwiks` (`2026-11-22 04:29 IST`): scan all repositories under `shatwiks`, sync all non-empty project repos into the conversation scratch directory (`git -c core.longpaths=true`), read their Markdown docs, refresh `## 📊 Top Skills` from real code and manifests, and update `## 🚀 Featured Projects` in `README.md` while keeping the rest of `README.md` unchanged.
+
+### Files Modified
+- **[README.md](README.md)** *(modified)* — Updated `## 📊 Top Skills (measured from my repos)` (`162k+` non-blank lines across `10` public repositories: `Python 48.8%` / `79.2k`, `TypeScript 42.6%` / `69.1k`, `JavaScript 3.9%` / `6.4k`, `CSS 3.1%` / `5.0k`, `C++20 0.8%` / `1.3k`, `SQL 0.7%` / `1.2k`) and refreshed `AegisOps` in `## 🚀 Featured Projects` to reflect its WCAG 2.1 AA `tsc`/Vite React 18 + TypeScript console reconstruction while leaving all other `README.md` sections untouched.
+- **[profile/projects-state.json](profile/projects-state.json)** *(modified)* — Synced `AegisOps` (`c186cbc`) and `distributed-flash-sale-engine` (`8da7ba5`) SHAs and updated the `AegisOps` entry to match `README.md`.
+- **[CHANGEREPORT.md](CHANGEREPORT.md)** *(modified)* — Prepended this dated summary entry.
+
+### Verification Commands & Results
+- **Repository Discovery & Sync:** Fetched `https://api.github.com/users/shatwiks/repos?per_page=100&sort=pushed` (`11` public repos returned; `gh` CLI not installed) and cloned all `11` repos cleanly into scratch using `git -c core.longpaths=true`.
+- **Delta & Top Skills Measurement:** Detected new commits in `AegisOps` (`93c636b..c186cbc`: UI reconstruction + OpenGraph card), `distributed-flash-sale-engine` (`eda6c9a..8da7ba5`: vector hero + social-preview assets), and `PayGuard-AI-Agentic-Payment-Triage-RAG-Engine` (`a3e4dfe..f412025`: `[skip ci]` metrics refresh); re-ran `update_readme.py`'s `measure_top_skills()` across all `10` project repos (`162,322` tracked lines across `Python`, `TypeScript`, `JavaScript`, `CSS`, `C++20`, `SQL`, `HTML`).
+- **Git Diff, Rebase & Push:** Verified `git diff -- README.md` touches only `Top Skills` and `AegisOps` in `Featured Projects`, then executed `git pull --rebase origin main` and `git push origin main` with `GIT_TERMINAL_PROMPT=0` and `GCM_INTERACTIVE=never`.
+
+---
+
 ## 2026-11-21 02:59 IST — Harden Nightly Updater, Align Tech Stack & Sync `projects-state.json`
 
 ### Objective
