@@ -1,45 +1,24 @@
 {
   "shas": {
-    "AegisOps": "c186cbc22c9afa1bc0e3bf6c9af304d813d3ab77",
-    "Bastion-hybrid-rag": "45231b8721a35c42ba9dd940b7a47915191267f3",
-    "Glamgo": "54ba3db64fcb87f6c45ad2b3b848357cc91fbb83",
-    "Medicine-Link": "080d9a04aa7aeba952f74cf23f8cf24db2004c1f",
-    "PayGuard-AI-Agentic-Payment-Triage-RAG-Engine": "a3e4dfee8b4a0a859592e40451f6a9984304ed0e",
-    "Real-Time-Commerce-and-Web-Application-Platform": "0379779616cc142fa4d1e274ad7d409af2c0fff6",
-    "StockPulse-Multi-Tenant-Inventory-Order-Engine": "a80d75d827d51a949f81a66de366b8ec167025e3",
-    "distributed-flash-sale-engine": "8da7ba5415b2ba79c55b5d83130493ce54d4ef23",
-    "polypulse": "2fec282bece2eb6e8fd8b820babe2d93271469ea",
-    "ric0fc": "01acafcd6b38946220d4a763dd0311a80c19a4cc"
+    "AegisOps": "e95e553aef1e5116eee70a68fb63f08b967e7145",
+    "Bastion-hybrid-rag": "7befeab28a460ad01c6ae8150745401c8e19fc77",
+    "Glamgo": "000acf626e766020e8168d5f22757ba1bfd504b6",
+    "Medicine-Link": "c2b6d7438352f213318aabd673fc61ce330eb231",
+    "PayGuard-AI-Agentic-Payment-Triage-RAG-Engine": "d07505e3f379fccaa94e0613d74e9dece8959331",
+    "Real-Time-Commerce-and-Web-Application-Platform": "f60c927ffccc25e12a229f272a7acde0016edc92",
+    "StockPulse-Multi-Tenant-Inventory-Order-Engine": "656119772c4bf4a9ea17e6afeca9db8f0d16ebcb",
+    "distributed-flash-sale-engine": "5048216e0d3bc872b92d9d7f0608caf6c410efca",
+    "polypulse": "0fe16d45e79afdc81826565ed9271846b97bf40d",
+    "ric0fc": "0fb25b3da141e578c88a9a06a3a0a31617dfda00"
   },
   "entries": {
-    "AegisOps": {
-      "repo": "AegisOps",
-      "title": "AegisOps \u2014 Autonomous AIOps & Self-Healing Kubernetes Control Plane",
-      "live_demo_url": null,
-      "api_docs_url": null,
-      "line1": "Locally runnable AIOps control plane and Kubernetes operator that scrubs PII fail-closed (`1.00` precision/recall), maps CMDB blast radius, retrieves runbooks via `pgvector` + Ollama hybrid RAG, and enforces Keycloak OIDC + TOTP MFA approval or deterministic refusal before proving 60s of unbroken recovery.",
-      "line2": "Verified with **65/65** pytest tests (unit, live K8s/DB integration, Playwright E2E), **240/240** `k6` burst checks (`0.00%` failed), **4/4** live `kind` chaos recoveries + stateful DB refusal, Ruff/Mypy clean across 50 Python modules, WCAG 2.1 AA `tsc`/Vite React console, and GitHub Actions CI.",
-      "stack": [
-        "Python 3.12",
-        "FastAPI",
-        "Kubernetes (kind)",
-        "Terraform",
-        "PostgreSQL 16",
-        "pgvector",
-        "Redis",
-        "Keycloak",
-        "Ollama",
-        "React 18",
-        "TypeScript"
-      ]
-    },
     "polypulse": {
       "repo": "polypulse",
       "title": "PolyPulse \u2014 Cross-Venue Prediction-Market Orderbook & Markout Pipeline",
       "live_demo_url": null,
       "api_docs_url": null,
-      "line1": "Fixed-point C++20 orderbook engine (`std::vector<PriceLevel>`, zero steady-state heap allocations) paired with Python AsyncIO Polymarket/Kalshi/Polygon ingestion, SQLite WAL journaling, ClickHouse `LEFT ASOF JOIN` 5s/30s/60s markout, and official fee-schedule arbitrage scanning.",
-      "line2": "Benchmarked at **56.39M ops/sec** (**17.00 ns** p50) for in-place level updates and **13.53M ops/sec** AVX2 batch VWAP; verified with **133** passing Python tests, C++20 unit assertions, Vite build (`1,578` modules), and GitHub Actions CI.",
+      "line1": "Fixed-point C++20 orderbook engine (zero steady-state heap allocations) paired with Python AsyncIO multi-venue ingestion, ClickHouse LEFT ASOF JOIN markouts, and official fee-schedule arbitrage scanning.",
+      "line2": "Benchmarked at 56.39M ops/sec (17.00 ns p50) for in-place level updates and 13.53M ops/sec AVX2 batch VWAP; verified with 133 passing Python tests, C++20 unit assertions, and GitHub Actions CI.",
       "stack": [
         "C++20",
         "Python",
@@ -47,17 +26,16 @@
         "ClickHouse",
         "SQLite WAL",
         "React 19",
-        "Web Workers",
         "Docker Compose"
       ]
     },
     "distributed-flash-sale-engine": {
       "repo": "distributed-flash-sale-engine",
       "title": "Distributed Flash-Sale Engine \u2014 High-Throughput Ticket Booking Architecture",
-      "live_demo_url": "https://ticket-booking-api-jvic.onrender.com/health",
+      "live_demo_url": null,
       "api_docs_url": null,
-      "line1": "High-concurrency ticketing engine eliminating TOCTOU race conditions and overselling via O(1) Redis Lua atomic reservation gates, Redlock distributed locks, two-phase compensating `INCRBY` saga rollbacks, and AWS ECS Fargate + Terraform IaC.",
-      "line2": "Sustains **10,000+ RPS** burst traffic with **0.00% overbooking**, **18.5 ms** p95 latency (93.2% lower than 271 ms `SELECT ... FOR UPDATE`), **0.00% HTTP 500** errors versus 18.4% relational pool exhaustion, and a live Render cloud health API.",
+      "line1": "High-concurrency ticketing engine eliminating TOCTOU race conditions and overselling via O(1) Redis Lua atomic reservation gates, Redlock distributed locks, and two-phase compensating INCRBY saga rollbacks.",
+      "line2": "Sustains 10,000+ RPS burst traffic with 0.00% overbooking, 18.5 ms p95 latency, 0.00% HTTP 500 errors, and AWS ECS Fargate + Terraform infrastructure backed by a live cloud health API.",
       "stack": [
         "Node.js 20",
         "Express",
@@ -70,23 +48,24 @@
         "k6"
       ]
     },
-    "PayGuard-AI-Agentic-Payment-Triage-RAG-Engine": {
-      "repo": "PayGuard-AI-Agentic-Payment-Triage-RAG-Engine",
-      "title": "PayGuard AI \u2014 Agentic Payment Dispute Triage & Regulatory RAG Engine",
+    "AegisOps": {
+      "repo": "AegisOps",
+      "title": "AegisOps \u2014 Autonomous AIOps & Self-Healing Kubernetes Control Plane",
       "live_demo_url": null,
       "api_docs_url": null,
-      "line1": "Autonomous payment triage platform (`27.8k+` non-blank LOC, 18 API routes, 6 Alembic migrations) combining a strictly read-only 5-tool `ToolRegistry`, gateway-timeout non-mutation semantics, and prompt-injection defense with hybrid `pgvector` + FTS RAG over Visa/Mastercard/NACHA rules.",
-      "line2": "Includes **207 test cases** across 20 modules (**181/181** independently audited pass), **40/40 (100%)** Ollama RAG evaluation (`100%` Recall@5, `1.0000` MRR, `100%` tenant isolation), **8/8** Playwright E2E tests, Docker staging `pg_dump`/`pg_restore` verification, and CI.",
+      "line1": "Locally runnable AIOps control plane and Kubernetes operator that scrubs PII fail-closed, maps CMDB blast radius, retrieves runbooks via pgvector + Ollama hybrid RAG, and enforces Keycloak OIDC + TOTP MFA approval.",
+      "line2": "Verified with 65/65 pytest tests, 240/240 k6 burst checks (0.00% failed), 4/4 live kind chaos recoveries, Ruff/Mypy clean across 50 Python modules, and WCAG 2.1 AA Vite React console.",
       "stack": [
-        "Python 3.14",
+        "Python 3.12",
         "FastAPI",
+        "Kubernetes (kind)",
+        "Terraform",
         "PostgreSQL 16",
         "pgvector",
-        "Next.js 16",
-        "React 19",
-        "SQLAlchemy",
-        "Playwright",
-        "Docker"
+        "Redis",
+        "Keycloak",
+        "Ollama",
+        "React 18"
       ]
     },
     "Bastion-hybrid-rag": {
@@ -94,8 +73,8 @@
       "title": "Bastion \u2014 Zero-Leak Multi-Tenant Hybrid RAG Engine",
       "live_demo_url": null,
       "api_docs_url": null,
-      "line1": "Multi-tenant RAG platform executing pre-retrieval JWT `tenant_id` + `allowed_roles` SQL CTE filtering before `pgvector` HNSW + dual-FTS (`simple`/`english`) Reciprocal Rank Fusion, a `< 0.65` Cross-Encoder refusal gate (`0` LLM tokens on traps), and Redis 8 scoped semantic caching.",
-      "line2": "Benchmarked at **100.0% retrieval precision** and **1.0000 MRR** (+32.59% lift) across 28 probes, **0.0% ungrounded answers** and **0/14** RBAC/tenant leaks on adversarial traps, Ragas v0.4 evaluation, and a Next.js 16 landing + live `/workspace` SSE inspector.",
+      "line1": "Multi-tenant RAG platform executing pre-retrieval JWT tenant isolation SQL CTE filtering before pgvector HNSW + dual-FTS Reciprocal Rank Fusion, a Cross-Encoder refusal gate, and Redis 8 scoped semantic caching.",
+      "line2": "Benchmarked at 100.0% retrieval precision and 1.0000 MRR across 28 probes, 0.0% ungrounded answers and 0/14 RBAC/tenant leaks on adversarial traps, Ragas v0.4 evaluation, and Next.js 16 SSE inspector.",
       "stack": [
         "Python 3.12",
         "FastAPI",
@@ -108,20 +87,21 @@
         "Docker"
       ]
     },
-    "Glamgo": {
-      "repo": "Glamgo",
-      "title": "GlamGo \u2014 Beauty Retail Marketplace & Instant Booking Platform",
-      "live_demo_url": "https://glamgo-ricoz.vercel.app/",
-      "api_docs_url": "https://glamgo-backend-lqn6.onrender.com/docs",
-      "line1": "Production-deployed multi-vendor commerce and salon/at-home booking platform with integer-paise largest-remainder order splitting, row-locked `SellerListing` stock reservations, Razorpay HMAC-SHA256 webhook reconciliation, T+7 seller escrow, HTTP 409 double-booking guards, and immutable DB audit triggers.",
-      "line2": "Verified with **78/78** local pytest tests against PostgreSQL 16 + Redis 7 (**62/62** in 3-stage GitHub Actions CI), **7.3x** faster warm catalog endpoints (`0.30s`), Playwright desktop/mobile E2E checks (`0` errors, `0px` overflow), and live Vercel + Render deployments.",
+    "PayGuard-AI-Agentic-Payment-Triage-RAG-Engine": {
+      "repo": "PayGuard-AI-Agentic-Payment-Triage-RAG-Engine",
+      "title": "PayGuard AI \u2014 Agentic Payment Dispute Triage & Regulatory RAG Engine",
+      "live_demo_url": null,
+      "api_docs_url": null,
+      "line1": "Autonomous payment triage platform combining a strictly read-only 5-tool ToolRegistry, gateway-timeout non-mutation semantics, and prompt-injection defense with hybrid pgvector + FTS RAG over regulatory rules.",
+      "line2": "Includes 207 test cases (181/181 independently audited pass), 40/40 Ollama RAG evaluation (100% Recall@5, 1.0000 MRR, 100% tenant isolation), 8/8 Playwright E2E tests, and Docker staging verification.",
       "stack": [
-        "Python",
+        "Python 3.14",
         "FastAPI",
         "PostgreSQL 16",
-        "Redis 7",
-        "Vite",
-        "Razorpay",
+        "pgvector",
+        "Next.js 16",
+        "React 19",
+        "SQLAlchemy",
         "Playwright",
         "Docker"
       ]
@@ -131,8 +111,8 @@
       "title": "StockPulse \u2014 Multi-Tenant Inventory & POS Order Engine",
       "live_demo_url": null,
       "api_docs_url": null,
-      "line1": "B2B multi-tenant inventory and POS order engine eliminating PostgreSQL `40P01` deadlocks via deterministic `ORDER BY id ASC FOR UPDATE` lock ordering, `stock_quantity >= 0` check constraints, Indian GST bifurcation, and a Three.js 3D warehouse telemetry console.",
-      "line2": "Verified with automated 10-thread parallel stress tests (`0` negative-stock drift), GitHub Actions CI with ephemeral PostgreSQL migrations, and an AST accessibility audit certifying **100% WCAG 2.1 AA** compliance across 19 UI components.",
+      "line1": "B2B multi-tenant inventory and POS order engine eliminating PostgreSQL deadlocks via deterministic ORDER BY id ASC FOR UPDATE lock ordering, check constraints, Indian GST bifurcation, and Three.js 3D telemetry.",
+      "line2": "Verified with automated 10-thread parallel stress tests (0 negative-stock drift), GitHub Actions CI with ephemeral PostgreSQL migrations, and an AST accessibility audit certifying 100% WCAG 2.1 AA compliance.",
       "stack": [
         "TypeScript",
         "Next.js 16",
@@ -144,13 +124,31 @@
         "Docker Compose"
       ]
     },
+    "Glamgo": {
+      "repo": "Glamgo",
+      "title": "GlamGo \u2014 Beauty Retail Marketplace & Instant Booking Platform",
+      "live_demo_url": "https://glamgo-ricoz.vercel.app/",
+      "api_docs_url": "https://glamgo-backend-lqn6.onrender.com/docs",
+      "line1": "Production-deployed multi-vendor commerce and salon/at-home booking platform with integer-paise order splitting, row-locked stock reservations, Razorpay webhook reconciliation, and HTTP 409 double-booking guards.",
+      "line2": "Verified with 78/78 local pytest tests against PostgreSQL 16 + Redis 7 (62/62 in CI), 7.3x faster warm catalog endpoints, Playwright E2E checks, and live Vercel + Render deployments.",
+      "stack": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL 16",
+        "Redis 7",
+        "Vite",
+        "Razorpay",
+        "Playwright",
+        "Docker"
+      ]
+    },
     "ric0fc": {
       "repo": "ric0fc",
       "title": "RicozViz \u2014 Enterprise BI & Analytical Exploration Platform",
       "live_demo_url": "https://ricozviz.vercel.app",
       "api_docs_url": null,
-      "line1": "Dual-storage SaaS BI platform pairing DuckDB for sub-second analytical file queries with PostgreSQL for multi-tenant transactional metadata, strict server-side RBAC, schema-allowlisted query generation, and 192-bit cryptographic dashboard share tokens.",
-      "line2": "Verified with **42/42** security audit tests, **13/13** static architectural checks, **10/10** Playwright security tests, **12/12** E2E pages with zero console/network errors, and live Vercel + Render/Supabase deployment configuration.",
+      "line1": "Dual-storage SaaS BI platform pairing DuckDB for sub-second analytical file queries with PostgreSQL for multi-tenant transactional metadata, strict server-side RBAC, and 192-bit cryptographic dashboard share tokens.",
+      "line2": "Verified with 42/42 security audit tests, 13/13 static architectural checks, 10/10 Playwright security tests, 12/12 E2E pages with zero errors, and live Vercel + Render/Supabase deployment configuration.",
       "stack": [
         "DuckDB",
         "PostgreSQL",
@@ -168,8 +166,8 @@
       "title": "OrderFlow \u2014 Multi-Restaurant Commerce & Real-Time Fulfillment Engine",
       "live_demo_url": null,
       "api_docs_url": null,
-      "line1": "Multi-restaurant ordering and kitchen fulfillment platform enforcing database-authoritative billing transactions, SHA-256 step-up 2FA OTP with atomic 3-attempt burn, and room-scoped Socket.io updates (`order:<id>`, `restaurant:<id>`).",
-      "line2": "Backed by an automated GitHub Actions CI pipeline running Prisma schema migrations on PostgreSQL 15, strict TypeScript checks, and Vitest + Supertest security tests.",
+      "line1": "Multi-restaurant ordering and kitchen fulfillment platform enforcing database-authoritative billing transactions, SHA-256 step-up 2FA OTP with atomic 3-attempt burn, and room-scoped Socket.io real-time updates.",
+      "line2": "Backed by an automated GitHub Actions CI pipeline running Prisma schema migrations on PostgreSQL 15, strict TypeScript checks, and Vitest + Supertest security test suites.",
       "stack": [
         "TypeScript",
         "Node.js",
@@ -187,8 +185,8 @@
       "title": "MedicineLink \u2014 Surplus Medicine Redistribution Platform",
       "live_demo_url": null,
       "api_docs_url": null,
-      "line1": "Academic healthcare redistribution prototype pairing Tesseract.js OCR + Sharp blister-pack intake with a 12-factor clinical eligibility engine, Haversine proximity matching, cryptographic QR tracking, and native SQLite WAL persistence.",
-      "line2": "Built with full-stack TypeScript across 15 relational tables with partial unique first-accept concurrency guards (`ux_matches_one_accepted`), immutable audit triggers, Swagger OpenAPI docs, and passing Vitest suites.",
+      "line1": "Academic healthcare redistribution prototype pairing Tesseract.js OCR + Sharp blister-pack intake with a 12-factor clinical eligibility engine, Haversine proximity matching, and SQLite WAL persistence.",
+      "line2": "Built with full-stack TypeScript across 15 relational tables with partial unique first-accept concurrency guards, immutable audit triggers, Swagger OpenAPI docs, and passing Vitest test suites.",
       "stack": [
         "TypeScript",
         "React 18",
