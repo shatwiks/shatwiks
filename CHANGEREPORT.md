@@ -1,5 +1,22 @@
 # Change Report (`CHANGEREPORT.md`)
 
+## 2026-11-23 11:27 IST — Full `github-profile-update` Pass (`README.md`)
+
+### Objective
+Execute the full `github-profile-update` workflow for `https://github.com/shatwiks/shatwiks` (`2026-11-23 11:18 IST`): scan all repositories under `shatwiks` via `https://api.github.com/users/shatwiks/repos?per_page=100&sort=pushed`, sync all non-empty project repos into the conversation `scratch/repos` directory (`git -c core.longpaths=true`), read their Markdown docs, verify `## 📊 Top Skills` from real code and manifests, and update `## 🚀 Featured Projects` in `README.md` while keeping the rest of `README.md` unchanged.
+
+### Files Modified
+- **[README.md](README.md)** *(modified)* — Restored recruiter-ranked `## 🚀 Featured Projects` (`#1 AegisOps` through `#10 MedicineLink`) after the `2675f36` nightly auto-update pass, preserving all other `README.md` sections and verified `## 📊 Top Skills` measurements (`173k+` non-blank code lines across `10` public repositories: `Python 48.5%` / `84.3k`, `TypeScript 39.8%` / `69.2k`, `JavaScript 6.2%` / `10.9k`, `CSS 4.0%` / `6.9k`, `C++20 0.8%` / `1.3k`, `SQL 0.7%` / `1.2k`), restoring `Distributed Flash-Sale Engine`'s live Render health URL and exact `10,480 req/s` / `18.4%` baseline metrics, and updating `GlamGo` (Phase 13: `99/99` pytest tests across `16` suites, multi-city Haversine radius discovery, 4-digit arrival OTPs, row-locked wallet credits) and `PayGuard AI` (`27,811` source lines, `207` test cases).
+- **[profile/projects-state.json](profile/projects-state.json)** *(modified)* — Synced all `10` curated project `entries` and latest non-bot commit `shas` to match `README.md`.
+- **[CHANGEREPORT.md](CHANGEREPORT.md)** *(modified)* — Prepended this dated summary entry.
+
+### Verification Commands & Results
+- **Repository Discovery & Sync:** Queried `https://api.github.com/users/shatwiks/repos?per_page=100&sort=pushed` (`11` public repos returned; `gh` CLI not installed) and cloned all `11` repos into `scratch/repos` using `git -c core.longpaths=true` with `GIT_TERMINAL_PROMPT=0` and `GCM_INTERACTIVE=never`.
+- **Top Skills & Doc Verification:** Executed `measure_top_skills()` and `render_top_skills()` across all `10` non-empty project repos (`173,930` tracked non-blank lines; `Python: 84,291`, `TypeScript: 69,227`, `JavaScript: 10,868`, `CSS: 6,903`, `C++20: 1,322`, `SQL: 1,187`, `HTML: 132`) and verified all `Featured Projects` claims, URLs, and test/benchmark counts directly from each repository's `.md` docs.
+- **Git Diff, Rebase & Push:** Verified `git diff -- README.md` modifies only `## 🚀 Featured Projects`, committed cleanly, and executed `git pull --rebase origin main` + `git push origin main` with `GIT_TERMINAL_PROMPT=0` and `GCM_INTERACTIVE=never`.
+
+---
+
 ## 2026-11-22 05:57 IST — Full `github-profile-update` Pass (`README.md`)
 
 ### Objective
