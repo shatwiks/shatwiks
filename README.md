@@ -123,8 +123,8 @@ Sustains **10,480 req/s** burst traffic (**10,000+ RPS**) with **0.00% overbooki
 
 ### 4. [PayGuard AI — Agentic Payment Dispute Triage & Regulatory RAG Engine](https://github.com/shatwiks/PayGuard-AI-Agentic-Payment-Triage-RAG-Engine)
 Autonomous payment dispute triage platform combining a strictly read-only 5-tool `ToolRegistry`, gateway-timeout non-mutation semantics, PII masking, and prompt-injection defense with hybrid `pgvector` HNSW + GIN `tsvector` RRF (`k=60`) regulatory RAG.
-Verified across `27,811` source lines with **207** test cases across 20 modules (**181/181** independently audited pass), **40/40** Ollama RAG eval (**100% Recall@5**, **1.0000 MRR**, **100% tenant isolation**), **8/8** Playwright E2E tests, and Docker `pg_dump`/`pg_restore` staging.
-**Stack:** `Python 3.14` · `FastAPI` · `PostgreSQL 16` · `pgvector` · `Next.js 16` · `React 19` · `SQLAlchemy` · `Playwright` · `Docker`
+Verified across `27,811` source lines (`18` API routes, `6` Alembic migrations) with **207** test cases across 20 modules (**181/181** independently audited pass), **40/40** Ollama RAG eval (**100% Recall@5**, **1.0000 MRR**, **100% tenant isolation**), **8/8** Playwright E2E tests, and Docker `pg_dump`/`pg_restore` staging.
+**Stack:** `Python 3.11+` · `FastAPI` · `PostgreSQL 16` · `pgvector` · `Next.js 16` · `React 19` · `SQLAlchemy` · `Playwright` · `Docker`
 
 ### 5. [Bastion — Zero-Leak Multi-Tenant Hybrid RAG Engine](https://github.com/shatwiks/Bastion-hybrid-rag)
 Multi-tenant RAG platform executing pre-retrieval JWT `tenant_id` + `allowed_roles` SQL CTE filtering before `pgvector` HNSW + dual-FTS (`simple`/`english`) Reciprocal Rank Fusion, a `< 0.65` Cross-Encoder refusal gate (`0` LLM tokens on traps), and Redis 8 scoped semantic caching.

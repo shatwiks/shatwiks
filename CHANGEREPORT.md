@@ -1,5 +1,22 @@
 # Change Report (`CHANGEREPORT.md`)
 
+## 2026-11-25 11:06 IST — Full `github-profile-update` Pass (`README.md`)
+
+### Objective
+Execute the full `github-profile-update` workflow for `https://github.com/shatwiks/shatwiks` (`2026-11-25 10:57 IST`): scan all repositories under `shatwiks` via `https://api.github.com/users/shatwiks/repos?per_page=100&sort=pushed`, sync all non-empty project repos in the conversation `scratch/repos` folder (`git -c core.longpaths=true`), read their Markdown docs, refresh `## 📊 Top Skills` from real code and manifests, and update `## 🚀 Featured Projects` in `README.md` while keeping the rest of `README.md` unchanged.
+
+### Files Modified
+- **[README.md](README.md)** *(modified)* — Refreshed `#4 PayGuard AI` in `## 🚀 Featured Projects` from its `2026-11-25 00:30 UTC` `docs/PROJECT_METRICS.md` and `pyproject.toml` (`Python 3.11+`, `27,811` source lines, `18` API routes, `6` Alembic migrations, `207` test cases across `20` modules), while preserving all other ranked projects (`#1 AegisOps` through `#10 MedicineLink`) and all other sections of `README.md`.
+- **[profile/projects-state.json](profile/projects-state.json)** *(modified)* — Updated `PayGuard-AI-Agentic-Payment-Triage-RAG-Engine` SHA to `1adfc0058dd09ffcad12c80e41f88e736602da8c` and synced its entry with `README.md`.
+- **[CHANGEREPORT.md](CHANGEREPORT.md)** *(modified)* — Prepended this dated summary entry.
+
+### Verification Commands & Results
+- **Repository Discovery & Sync:** Queried `https://api.github.com/users/shatwiks/repos?per_page=100&sort=pushed` (`11` public repos returned; `gh` CLI not installed) and cloned/synced all `11` repos in `scratch/repos` with `git -c core.longpaths=true`, `GIT_TERMINAL_PROMPT=0`, and `GCM_INTERACTIVE=never`.
+- **Top Skills & Manifest Verification:** Counted tracked non-blank lines across all `10` non-empty project repos (excluding `.agents/`, `.github/skills/`, `public/assets/`, `.planning/`, `node_modules/`, lockfiles, `dist/`, `build/`): `173,798` core lines (`Python`: `84,291` / `48.5%` / `6 repos`; `TypeScript`: `69,227` / `39.8%` / `9 repos`; `JavaScript` `.js/.jsx`: `10,868` / `6.2%` / `6 repos`; `CSS`: `6,903` / `4.0%` / `10 repos`; `C++20`: `1,322` / `0.8%` / `1 repo`; `SQL`: `1,187` / `0.7%` / `8 repos`) and verified all framework/infra manifest counts (`Docker`: 9, `React`: 9, `PostgreSQL`: 8, `FastAPI`: 6, `GitHub Actions CI`: 6, `Tailwind CSS`: 6, `Next.js`: 5, `Vite`: 5, `Pydantic`: 5, `SQLAlchemy`: 5, `Redis`: 5, `Alembic`: 4, `Express`: 4, `pytest`: 4, `Zod`: 3, `pgvector`: 3, `Playwright`: 2, `Prisma`: 2, `Terraform`: 2, `Three.js`: 2, `Vitest`: 2, `Zustand`: 2, `Kubernetes`: 1).
+- **Git Diff, Rebase & Push:** Verified `git diff -- README.md` touches only `PayGuard AI` inside `## 🚀 Featured Projects`, committed cleanly, and ran `git pull --rebase origin main` + `git push origin main` with `GIT_TERMINAL_PROMPT=0` and `GCM_INTERACTIVE=never`.
+
+---
+
 ## 2026-11-23 11:27 IST — Full `github-profile-update` Pass (`README.md`)
 
 ### Objective
