@@ -1,5 +1,22 @@
 # Change Report (`CHANGEREPORT.md`)
 
+## 2026-11-26 05:38 IST — Full `github-profile-update` Pass (`README.md` & `projects-state.json`)
+
+### Objective
+Execute the full `github-profile-update` workflow for `https://github.com/shatwiks/shatwiks` (`2026-11-26 05:34 IST`): scan all repositories under `shatwiks` via `https://api.github.com/users/shatwiks/repos?per_page=100&sort=pushed`, sync all non-empty project repos in the conversation `scratch/repos` folder (`git -c core.longpaths=true`), read their Markdown docs, re-measure `## 📊 Top Skills` from real code and manifests, verify `## 🚀 Featured Projects` in `README.md` while keeping the rest of `README.md` unchanged, and rebase/push to `origin/main`.
+
+### Files Modified
+- **[README.md](README.md)** *(modified)* — Re-verified all `## 📊 Top Skills` measurements and all `10` ranked entries in `## 🚀 Featured Projects` against every repo's live Markdown documentation and manifests (all metrics, test counts, live demo URLs, and stacks already matched ground truth); restored the blank separator line before `---` at the end of `## 🚀 Featured Projects` while keeping all other sections unchanged.
+- **[profile/projects-state.json](profile/projects-state.json)** *(modified)* — Synced `PayGuard-AI-Agentic-Payment-Triage-RAG-Engine` SHA to its latest non-bot commit `d07505e3f379fccaa94e0613d74e9dece8959331` (matching `update_readme.py`'s `get_latest_human_commit_sha()` after its `2026-11-25 18:34 UTC` `[skip ci]` metrics timestamp refresh `c485636`).
+- **[CHANGEREPORT.md](CHANGEREPORT.md)** *(modified)* — Prepended this dated summary entry.
+
+### Verification Commands & Results
+- **Repository Discovery & Sync:** Queried `https://api.github.com/users/shatwiks/repos?per_page=100&sort=pushed` (`11` public repos returned; `gh` CLI not installed) and cloned all `11` repos into `scratch/repos` using `git -c core.longpaths=true` with `GIT_TERMINAL_PROMPT=0` and `GCM_INTERACTIVE=never`.
+- **Top Skills & Doc Verification:** Executed `update_readme.measure_top_skills()` and `update_readme.render_top_skills()` across all `10` non-empty project repos (`173,930` tracked non-blank lines; `Python`: `84,291` / `48.5%` / `6 repos`, `TypeScript`: `69,227` / `39.8%` / `9 repos`, `JavaScript`: `10,868` / `6.2%` / `6 repos`, `CSS`: `6,903` / `4.0%` / `10 repos`, `C++20`: `1,322` / `0.8%` / `1 repo`, `SQL`: `1,187` / `0.7%` / `8 repos`, `HTML`: `132` / `5 repos`; `React`: `9`, `Docker`: `9`, `PostgreSQL`: `8`, `FastAPI`: `6`, `Tailwind CSS`: `6`, `GitHub Actions CI`: `6`, `Next.js`: `5`, `Vite`: `5`, `SQLAlchemy`: `5`, `Pydantic`: `5`, `Redis`: `5`, `Express`: `4`, `Alembic`: `4`, `pytest`: `4`, `Zod`: `3`, `pgvector`: `3`, `Three.js`: `2`, `Zustand`: `2`, `Prisma`: `2`, `Vitest`: `2`, `Playwright`: `2`, `SQLite`: `2`, `Terraform`: `2`, `Kubernetes`: `1`, `DuckDB`: `1`), confirming exact parity with `README.md`. Verified `PayGuard` `docs/PROJECT_METRICS.md` (`27,811` source lines, `207` test cases, `18` routes, `6` migrations), `PolyPulse` (`1,578` Vite modules, `133` Python tests, `56.39M ops/sec`, `13.53M ops/sec`), `Distributed Flash-Sale Engine` (`18.4%` baseline HTTP 500s, `10,480 req/s`), `RicozViz` (`42/42` security, `13/13` static, `10/10` Playwright security, `12/12` E2E), and all remaining repos' `.md` docs.
+- **Git Diff, Rebase & Push:** Verified `git diff -- README.md` touches only the trailing blank line of `## 🚀 Featured Projects`, committed cleanly, and executed `git pull --rebase origin main` + `git push origin main` with `GIT_TERMINAL_PROMPT=0` and `GCM_INTERACTIVE=never`.
+
+---
+
 ## 2026-11-25 11:06 IST — Full `github-profile-update` Pass (`README.md`)
 
 ### Objective

@@ -155,6 +155,7 @@ Backed by an automated GitHub Actions CI pipeline running Prisma schema migratio
 Academic healthcare redistribution prototype pairing Tesseract.js OCR + Sharp blister-pack intake with a 12-factor clinical eligibility engine, Haversine proximity matching, cryptographic QR tracking, and native SQLite WAL persistence.
 Built with full-stack TypeScript across 15 relational tables with partial unique first-accept concurrency guards (`ux_matches_one_accepted`), immutable audit triggers, Swagger OpenAPI docs, and passing Vitest suites.
 **Stack:** `TypeScript` · `React 18` · `Node.js` · `Express` · `SQLite (WAL)` · `Zod` · `Tesseract.js` · `Vitest`
+
 ---
 
 ## 🏆 Hackathons & Achievements
